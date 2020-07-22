@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx codeceptjs run --plugins allure"
+    "test": "env-cmd -f ./qa.env npx codeceptjs run --plugins allure"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,8 @@
   "dependencies": {
     "@codeceptjs/configure": "^0.5.2",
     "@codeceptjs/ui": "^0.3.7",
+    "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "faker": "^4.1.0",
     "mocha-junit-reporter": "^2.0.0",
     "mochawesome": "^6.1.1"

@@ -1,23 +1,21 @@
-const usersPage = require('./pages/users.page')
-const rolesPage = require('./pages/roles.page')
-const homePage = require('./pages/home.page')
+const usersPage = require('../../src/pages/users.page')
+const rolesPage = require('../../src/pages/roles.page')
+const homePage = require('../../src/pages/home.page')
+const groupsPage = require('../../src/pages/groups.page')
+const loginPage = require('../../src/pages/login.page')
+//const env = require('../credentials')
 
 module.exports = function () {
   return actor({
 
     login: function () {
       this.amOnPage('https://qa1.curlywurly.me')
-      this.fillField('Email', 'nhode@glasswallsolutions.com');
-      this.fillField('Password', 'Password1!');
-      this.click('Log In');
+      loginPage.loginWith(env.qa.email, env.qa.password)
     },
 
     loginAs: function (email, password) {
       this.amOnPage('https://qa1.curlywurly.me')
-      this.fillField('Email', email);
-      this.fillField('Password', password);
-      this.click('Log In');
-
+      loginPage.loginWith(email, password)
     },
 
     logout: function () {
@@ -45,12 +43,12 @@ module.exports = function () {
     },
 
     goToGroups: function () {
-      this.click('');
-      this.click('');
+      homePage.clickUsers();
+      groupsPage.clickGroupsTab();
     },
 
     goToUsers: function () {
-      this.click('');
+      homePage.clickUsers();
       this.click('');
     },
 

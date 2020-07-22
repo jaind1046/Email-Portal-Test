@@ -1,13 +1,10 @@
 
-
+const {
+  I
+} = inject();
 module.exports = {
  
-    // Custom steps 
-    adminCredentials: {
-      user: 'nhode@glasswallsolutions.com',
-      password: 'Password2"'
-    }, //to be pulled from env variables
-
+   
     // setting locators
     fields: {
       user: 'Email',
@@ -219,8 +216,8 @@ module.exports = {
 
     // methods
 
-    loginWith(username, password) {
-      I.fillField(this.fields.user, username);
+    loginWith(email, password) {
+      I.fillField(this.fields.user, email);
       I.fillField(this.fields.password, password);
       I.click(this.loginButton);
     },

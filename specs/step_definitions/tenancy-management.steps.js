@@ -1,16 +1,17 @@
 ///<reference path="./steps.d.ts" />
 var assert = require('assert')
+
 const {
     I,
     homePage,
-    systemSettingsPage
+    systemSettingsPage,env
 } = inject();
 
-const tenant = "Nadege Tenant 5"
+const tenant = env.qa.tenantName
 
 Given('I am logged into the portal as a multi account tenant', () => {
-    I.login();
-    //pause()
+    I.loginAs(env.qa.email, env.qa.password);
+    I.wait(5)
 });
 
 When('I select a different tenant in the top right of the portal screen', () => {
@@ -18,7 +19,7 @@ When('I select a different tenant in the top right of the portal screen', () => 
 });
 
 Then('The selected tenant is successfully set', () => {
-    const id = "425fa0c0-2e59-459c-8568-9936832c3b95";
+    const id = env.qa.tenantId;
     homePage.goToSettings();
     systemSettingsPage.isTenantIdAccurate(id)
 

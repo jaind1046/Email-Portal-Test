@@ -1,22 +1,21 @@
 ///<reference path="./steps.d.ts" />
 var assert = require('assert')
-//const faker = require('faker');
+const faker = require('faker');
 
 const {
     I,
     rolesPage,
-    homePage, usersPage,
+    homePage, usersPage,env
 } = inject();
 
 const roleId = I.getId();
-const tenant = "Nadege Tenant 5"
 
 Given('I am logged in as the required tenant', () => {
-    I.login();
+    I.loginAs(env.qa.email, env.qa.password);
     I.wait(5)
     homePage.openTenantList()
     I.wait(5);
-    homePage.selectTenant(tenant);
+    homePage.selectTenant(env.qa.tenantName);
 });
 
 Given('I am on the users role page', () => {

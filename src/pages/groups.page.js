@@ -10,22 +10,18 @@ module.exports = {
         * GroupsTab
         * ***************************************************************
         */
-
         async getGroupsTabElement() {
             return (`button[id='tab-l1-2']`);
         },
-
         async clickGroupsTab() {
             const element = await this.getGroupsTabElement();
             I.click(element);
         },
 
-
         /*
          * GroupList
          * ***************************************************************
          */
-
         async getGroupListElement() {
             return (`select[class*='select2-users']`);
         },
