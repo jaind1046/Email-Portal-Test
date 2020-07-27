@@ -10,8 +10,8 @@ const {
 const tenant = env.qa.tenantName
 
 Given('I am logged into the portal as a multi account tenant', () => {
-    I.loginAs(env.qa.email, env.qa.password);
-    I.wait(5)
+    I.login();
+    I.wait(5);
 });
 
 When('I select a different tenant in the top right of the portal screen', () => {

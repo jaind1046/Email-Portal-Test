@@ -10,7 +10,8 @@ module.exports = {
       user: 'Email',
       password: 'Password',
       loginError: 'validation-error',
-      passwordResetLink: '#forgotPasswordLink'
+      passwordResetLink: `a[id='forgotPasswordLink']`
+     
       //validation-error login-error
 
     },

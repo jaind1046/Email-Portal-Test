@@ -4,6 +4,15 @@ const {
 
 module.exports = {
 
+    usersTab: `button[id='tab-l1-1']`,
+
+    
+
+    async clickUsersTab() {
+        const element = this.usersTab;
+         I.click(element);
+    },
+
     /*
      * AddUserBtn
      * ***************************************************************

@@ -1,28 +1,32 @@
 Feature: Alowed Domains Admin
 
-    
-
     Background: Allowed Domains page
-        Given I'm on the Allowed Domains page
+        Given I am logged in as required tenant
+        Given I am on the Allowed Domains page
 
+       
+    @addDomain
     Scenario: Add a Allowed Domain
+        
         When I add a valid Domain and save
-        Then The Domain is validated with a green tick and saved
+        Then The Domain is validated with a green tick
 
+    @uploadDomain
     Scenario: Upload a Allowed Domain csv file
-        When I click on the "Import" icon
-        And I select a csv file containing 1 or more valid Allowed Domains
-        Then the domain records are added and validated
-        And the success notification is displayed
+        When I Import a csv file containing a valid Allowed Domain
+        Then The Domain is validated with a green tick
 
+    @delDomain
     Scenario: Delete a Allowed Domain
         When I click delete on a existing Domain entry and save changes
         Then The Domain record is deleted
 
+    @editdomain
     Scenario: Edit a Allowed Domain
         When I update a current Allowed Domain with a valid one and save
         Then The Domain is validated with a green tick
-
+   
+    @addinvaldomain
     Scenario: Add a invalid Allowed Domain
         When I click + to add a Allowed Domain
         And I enter a invalid Domain and save

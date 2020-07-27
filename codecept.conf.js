@@ -28,7 +28,7 @@ exports.config = {
     loginPage: './src/pages/login.page.js',
     userActivationPage: './src/pages/account-activation.page.js',
     passwordResetPage: './src/pages/password-reset.page.js',
-    policyMainPage: './src/pages/policy-main.page.js',
+    policyPage: './src/pages/policy.page.js',
     policySgPage: './src/pages/sender-groups.page.js',
     policyRgPage: './src/pages/receiver-groups.page.js',
     policyPrPage: './src/pages/processing-rules.page.js',
@@ -38,20 +38,28 @@ exports.config = {
     userGroupsPage: './src/pages/groups.page.js',
     rolesPage: './src/pages/roles.page.js',
     relayEndpointsPage: './src/pages/relay-endpoints.page.js',
+    allowedDomainsPage: './src/pages/allowed-domains.page.js',
     systemSettingsPage: './src/pages/system-settings.page.js',
     fileReleaseRPage: './src/pages/file-release-request.page.js'
   },
   mocha: {
     reporterOptions: {
       "reportDir": "output"
-    }
-  },
+    },
+    "mochawesome": {
+      "stdout": "./output/console.log",
+      "options": {
+        "reportDir": "./output",
+        "reportname": "report"
+      }
+  }
+},
   bootstrap: null,
   teardown: null,
   hooks: [],
   gherkin: {
     features: './specs/features/*.feature',
-    steps: './specs/step_definitions/*.steps.js'
+    steps: './specs/step_definitions/user-roles.steps.js'
   },
   plugins: {
     screenshotOnFail: {
@@ -61,7 +69,21 @@ exports.config = {
       enabled: true
     },
     allure: {
-      enabled: true
+      enabled: true,
+      outputDir: "output"
+    },
+    stepByStepReport: {
+      enabled: true,
+      deleteSuccessful: false,
+      screenshotsForAllureReport: false
+    },
+    reportportal: {
+      enabled: true,
+      require: '@reportportal/agent-js-codecept',
+      token: 'be5be3d1-4737-4385-b7ff-7fb9ca693dd8',
+      endpoint: 'https://web.demo.reportportal.io/api/v1',
+      launchName: 'testlaunch',
+      projectName: 'nadhodegw_personal'
     }
   },
   tests: './*.steps.js',

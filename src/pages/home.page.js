@@ -4,6 +4,35 @@ const {
 
 module.exports = {
 
+  menu: '#mainMenu',
+  transactionLogLink: `a[class*='transaction-log-link']`,
+  fileReleaseRequestsLink: `a[class*='file-release-link']`,
+  policiesLink: `a[class*='policies-link']`,
+  accountPopupToggle :`button[id='accountPopupToggle']`,
+  logoutBtn: `a[class*='log-out-button']`,
+  configurationLink: `a[class*='config-link']`,
+
+
+async clickTransactionLog() {
+  const element = await this.transactionLogLink;
+  I.click(element);
+},
+
+ async clickFileReleaseRequests() {
+   const element = await this.fileReleaseRequestsLink;
+   I.click(element);
+ },
+
+ async clickPolicy() {
+   const element = await this.policiesLink;
+  I.click(element);
+ },
+
+ async clickConfiguration() {
+   const element = await this.configurationLink;
+   I.click(element);
+ },
+
 
   /*
    * TenantList
@@ -14,13 +43,9 @@ module.exports = {
     return (`div[class="tenant-menu-icon"]`);
   },
 
-//data-tenant-id="425fa0c0-2e59-459c-8568-9936832c3b95"
-//(`//button[contains(text(),'Nadege Tenant 5')]`)
-//(`//button[data-tenant-id="425fa0c0-2e59-459c-8568-9936832c3b95"]`)
-
   async getTenant(tenant) {
-    return ("//button[contains(text(),'"+tenant+"')]") //('#availableTenantsList > li:nth-child(4) > button')
-   // (`//li[@data-tenant-id="425fa0c0-2e59-459c-8568-9936832c3b95"]`);
+    return ("//button[contains(text(),'"+tenant+"')]") 
+   
   },
   async openTenantList() {
     const element = await this.getCurrentTenantList();

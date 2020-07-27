@@ -8,18 +8,7 @@ module.exports = {
   policyManagementUrl: '/PolicyManagement',
  
   page: {
-    PolicyMenu: `a[class*='policies-link']`,
     title: ".//div[contains(@class, 'numbers__main-title-block')]"
-  },
-
-/*
- * PolicyMenu
- * ***************************************************************
- */
-
-  async clickPolicy() {
-    const element = await this.page.PolicyMenu;
-    I.click(element);
   },
 
  /*
@@ -131,11 +120,6 @@ module.exports = {
    return (`ul[class*='current-tabs'] > li:nth-of-type(1) > button`);
  },
 
- 
-
-
-
-
  /*
   * CurrentSenderGroups
   * ***************************************************************
@@ -179,16 +163,15 @@ module.exports = {
  },
 
  /*
-  * PolicyTabDraft
+  * DraftPolicyTab
   * ***************************************************************
   */
 
- async getPolicyTabDraftElement() {
+ async getDraftPolicyTab() {
    return (`button[id='policyTabDraft']`);
  },
-
- async clickPolicyTabDraft() {
-   const element = await this.getPolicyTabDraftElement();
+ async clickDraftPolicyTab() {
+   const element = await this.getDraftPolicyTab();
    I.click(element);
  },
 
@@ -196,11 +179,9 @@ module.exports = {
   * DraftProcessingRules
   * ***************************************************************
   */
-
  async getDraftProcessingRulesElement() {
    return (`ul[class*='draft-tabs'] > li:nth-of-type(1) > button`);
  },
-
  async clickDraftProcessingRules() {
    const element = await this.getDraftProcessingRulesElement();
    I.click(element);

@@ -63,17 +63,23 @@ async getAvailableRoles() {
    // return element;
  },
 
-async getRoleElement() {
-     return element = (`li[id='role-id-b872376c-2d7a-44b6-80f7-74f483ee1b7c'] > button:nth-of-type(1)`);
-     //(`(//button[contains(text(),'roleId0')])`);
-   
+async getRoleLink(role) {
+     return "//button[contains(., '" + role + "')]"
+     //("//button[contains(., '" + role + "')]")[0]; ("//button[contains(., '" + role + "')]")[0]
+     //"//button[contains(., '" + role + "')]";
+}, 
+
+async selectRole(role) {
+    const element = await this.getRoleLink(role)
+    //if (element.length > 0) {
+        I.click(element)[0];
+   // }
 },
 
-async selectRole() {
-    // I.selectOption(this.getRolesPaneElement, role)
-    const element = await this.getRoleElement()
-    //locate('button').withText(role);
-    I.click(element);
+async clickDelete() {
+    // await this.selectRole(role)
+    const element = `//button[@class='list-item-delete-button tooltip-title']`;
+    I.click(element)[0];
 },
 
 async clickAdministrationRole2() {
@@ -187,10 +193,6 @@ async clickViewSystemConfiguration() {
     I.click(element);
 },
 
-async clickDelete(role) {
-   
-   let element = document.getElementsByClassName('list-item-delete-button visuallyhidden tooltip-title');
-    I.click(element);
-}
+
 
 }

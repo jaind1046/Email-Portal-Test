@@ -10,16 +10,10 @@ const {
 
 const roleId = I.getId();
 
-Given('I am logged in as the required tenant', () => {
-    I.loginAs(env.qa.email, env.qa.password);
+Given('I am logged in as required tenant', () => {
+    I.login();
     I.wait(5)
-    homePage.openTenantList()
-    I.wait(5);
-    homePage.selectTenant(env.qa.tenantName);
-});
-
-Given('I am on the users role page', () => {
-    I.goToRoles();
+    I.selectTenant(env.qa.tenantName);
 });
 
 When('I add a new role with required settings', () => {
@@ -27,25 +21,21 @@ When('I add a new role with required settings', () => {
     rolesPage.setRoleDisplayName(roleId);
     rolesPage.clickApproveFileReleaseToggle();
     rolesPage.clickSaveRoleButton();
-});
-
-Then('The new role is saved and appears in the roles column', () => {
-//     I.see(roleId);
-
- });
+}); 
 
 When('I select and delete a pre-existing role', () => {
-    rolesPage.selectRole('j18ghb');
-    rolesPage.clickDelete('j18ghb');
+    I.wait(5)
+    //pause();
+    //I.click("//button[contains(., 'dej8fg')]")[0]
+    //I.click(rolesPage.getRoleLink('dej8fg'));
+    rolesPage.selectRole('fb0e26')
+    //I.click(`//button[@class='list-item-delete-button tooltip-title']`)[0];
+    rolesPage.clickDelete();
     rolesPage.clickDeleteRoleConfirmSave();
 });
 
 Then('the role is deleted', () => {
-
-});
-
-Then('a message is displayed saying changes have been saved', () => {
-
+    I.dontSeeElement(rolesPage.getRoleLink(roleId))
 });
 
 When('I select and edit a pre-existing role', () => {
@@ -54,20 +44,12 @@ When('I select and edit a pre-existing role', () => {
     rolesPage.clickSaveRoleButton();
 });
 
-Then('the role is saved', () => {
-    pause();
-    I.seeCheckboxIsChecked(rolesPage.getViewSystemConfigurationElement());
+Then('The new role is saved with the selected permission and appears in the roles column', () => {
+    //pause();
+   // I.seeElement(rolesPage.getRoleLink(roleId));
+    //I.seeCheckboxIsChecked(rolesPage.getViewSystemConfigurationElement());
 });
 
-
-Given('I do not have permissions to access the users tab', () => {
-
-});
-
-When('I log in', () => {
-
-});
-
-Then('The users tab is unavailable', () => {
-
+Given('I am on the users role page', () => {
+    I.goToRoles();
 });

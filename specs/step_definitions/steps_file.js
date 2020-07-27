@@ -3,7 +3,10 @@ const rolesPage = require('../../src/pages/roles.page')
 const homePage = require('../../src/pages/home.page')
 const groupsPage = require('../../src/pages/groups.page')
 const loginPage = require('../../src/pages/login.page')
-//const env = require('../credentials')
+const policyPage = require('../../src/pages/policy.page')
+const allowedDomainsPage = require('../../src/pages/allowed-domains.page')
+const relayEndpointsPage = require('../../src/pages/relay-endpoints.page')
+const env = require('../../credentials')
 
 module.exports = function () {
   return actor({
@@ -16,11 +19,12 @@ module.exports = function () {
     loginAs: function (email, password) {
       this.amOnPage('https://qa1.curlywurly.me')
       loginPage.loginWith(email, password)
+      this.seeElement(homePage.menu)
     },
 
     logout: function () {
-      this.click(`button[id='accountPopupToggle']`);
-      this.click(`a[class*='log-out-button']`);
+      this.click(homePage.accountPopupToggle);
+      this.click(homePage.logoutBtn);
     },
 
     getId: function (length = 6) {
@@ -28,7 +32,7 @@ module.exports = function () {
     },
     
     goToPasswordResetPage: function () {
-      this.click(`a[id='forgotPasswordLink']`);
+      this.click(loginPage.clickForgotPasswordLink());
     },
 
     selectTenant: function (tenant){
@@ -49,53 +53,52 @@ module.exports = function () {
 
     goToUsers: function () {
       homePage.clickUsers();
-      this.click('');
+      usersPage.clickUsersTab();
     },
 
     goToTransactionLog: function () {
-      this.click('');
-      this.click('');
+      homePage.clickTransactionLog();
     },
 
     goToFileReleaseRequestPage: function () {
-      this.click('');
-      this.click('');
+      homePage.clickFileReleaseRequests();
     },
 
-    goToPolicyProcessingRules: function () {
-      this.click('');
-      this.click('');
+    goToDraftPolicyProcessingRules: function () {
+      homePage.clickPolicy();
+      policyPage.clickDraftPolicyTab();
+      policyPage.clickDraftProcessingRules();
     },
 
     goToPolicySenderGroups: function () {
-      this.click('');
-      this.click('');
+      homePage.clickPolicy();
+      policyPage.clickDraftPolicyTab();
+      policyPage.clickDraftSenderGroups();
     },
 
     goToPolicyReceiverGroups: function () {
-      this.click('');
-      this.click('');
+      homePage.clickPolicy();
+      policyPage.clickDraftPolicyTab();
+      policyPage.clickDraftReceiverGroups();
     },
     goToContentManagementPolicy: function () {
-      this.click('');
-      this.click('');
+      homePage.clickPolicy();
+      policyPage.clickDraftPolicyTab();
+      policyPage.clickDraftContentManagementPolicies();
     },
 
     goToAllowedDomains: function () {
-      this.click('');
-      this.click('');
+      homePage.goToConfigurations();
+      this.click(allowedDomainsPage.allowedDomainsTab);
     },
 
     goToRelayEndpoints: function () {
-      this.click('');
-      this.click('');
+      homePage.goToConfigurations();
+      relayEndpointsPage.clickRelayEndpointTab();
     },
 
     goToSystemSettings: function (homePage) {
       homePage.goToSettings();
-      
-      // this.click('');
-      // this.click('');
     },
 
 

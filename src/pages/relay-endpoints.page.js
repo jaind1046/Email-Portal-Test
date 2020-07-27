@@ -1,7 +1,17 @@
+const {
+    I
+} = inject();
 
 module.exports = {
 
 
+async getRelayEndpointTab() {
+    return (`button[id='tab-l1-2']`);
+},
+async clickRelayEndpointTab() {
+    const element = await this.getRelayEndpointTab();
+    I.click(element);
+}
 
 /*
  * ImportRelayEndpoints
