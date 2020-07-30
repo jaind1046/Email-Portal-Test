@@ -11,7 +11,7 @@ async getRelayEndpointTab() {
 async clickRelayEndpointTab() {
     const element = await this.getRelayEndpointTab();
     I.click(element);
-}
+},
 
 /*
  * ImportRelayEndpoints

@@ -38,7 +38,6 @@ async clickTransactionLog() {
    * TenantList
    * ***************************************************************
    */
-
   async getCurrentTenantList() {
     return (`div[class="tenant-menu-icon"]`);
   },

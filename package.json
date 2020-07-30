@@ -17,6 +17,7 @@
     "@codeceptjs/configure": "^0.5.2",
     "@codeceptjs/ui": "^0.3.7",
     "@reportportal/agent-js-codecept": "^0.2.2",
+    "chai": "^4.2.0",
     "dotenv": "^8.2.0",
     "env-cmd": "^10.1.0",
     "faker": "^4.1.0",

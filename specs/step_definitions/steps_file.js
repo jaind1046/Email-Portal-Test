@@ -14,6 +14,7 @@ module.exports = function () {
     login: function () {
       this.amOnPage('https://qa1.curlywurly.me')
       loginPage.loginWith(env.qa.email, env.qa.password)
+      this.wait(5)
     },
 
     loginAs: function (email, password) {
@@ -38,7 +39,6 @@ module.exports = function () {
     selectTenant: function (tenant){
         homePage.openTenantList()
         homePage.selectTenant(tenant)
-        I.wait(5);
     },
 
     goToRoles: function () {

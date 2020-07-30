@@ -11,7 +11,8 @@ exports.config = {
        args: ['--no-sandbox', '--window-size=1536,826'],
      },
       waitForNavigation: ["domcontentloaded", "networkidle0"],
-      waitForAction: 2000
+      waitForAction: 2000,
+      waitForTimeout: 60000
     },
      Hooks: {
         require: './src/utils/hooks_helper.js',
@@ -23,7 +24,6 @@ exports.config = {
   include: {
     I: './specs/step_definitions/steps_file.js',
     env: './credentials.js',
-
     homePage: './src/pages/home.page.js',
     loginPage: './src/pages/login.page.js',
     userActivationPage: './src/pages/account-activation.page.js',
@@ -59,28 +59,28 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: './specs/features/*.feature',
-    steps: './specs/step_definitions/user-roles.steps.js'
+    steps: './specs/step_definitions/*.steps.js'
   },
   plugins: {
     screenshotOnFail: {
       enabled: true
     },
     retryFailedStep: {
-      enabled: true
+      enabled: false
     },
     allure: {
       enabled: true,
       outputDir: "output"
     },
     stepByStepReport: {
-      enabled: true,
+      enabled: false,
       deleteSuccessful: false,
       screenshotsForAllureReport: false
     },
     reportportal: {
       enabled: true,
       require: '@reportportal/agent-js-codecept',
-      token: 'be5be3d1-4737-4385-b7ff-7fb9ca693dd8',
+      token: '59efa91b-e0fe-4ce8-b075-922f227ba5e2',
       endpoint: 'https://web.demo.reportportal.io/api/v1',
       launchName: 'testlaunch',
       projectName: 'nadhodegw_personal'

@@ -12,11 +12,7 @@ class Hooks extends Helper {
    */
   _before() {
   
-    const recorder = require('codeceptjs').recorder;
-    recorder.retry({
-      retries: 2,
-      when: err => err.message.indexOf('Cannot find context with specified id') > -1,
-    });
+
    
     };
   

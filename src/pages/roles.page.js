@@ -63,18 +63,14 @@ async getAvailableRoles() {
    // return element;
  },
 
-async getRoleLink(role) {
-     return "//button[contains(., '" + role + "')]"
-     //("//button[contains(., '" + role + "')]")[0]; ("//button[contains(., '" + role + "')]")[0]
-     //"//button[contains(., '" + role + "')]";
+async isRoleLinkDisplayed(role) {
+  return I.seeElement("//button[contains(., '" + role + "')]")[0];
 }, 
 
 async selectRole(role) {
-    const element = await this.getRoleLink(role)
-    //if (element.length > 0) {
-        I.click(element)[0];
-   // }
-},
+  const element = "//button[contains(., '" +role+ "')]"
+  I.click(element)[0]
+},//I.seeElement("//button[contains(., '" + role + "')]")[0];
 
 async clickDelete() {
     // await this.selectRole(role)
