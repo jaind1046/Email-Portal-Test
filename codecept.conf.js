@@ -77,14 +77,14 @@ exports.config = {
       deleteSuccessful: false,
       screenshotsForAllureReport: false
     },
-    reportportal: {
-      enabled: true,
-      require: '@reportportal/agent-js-codecept',
-      token: '59efa91b-e0fe-4ce8-b075-922f227ba5e2',
-      endpoint: 'https://web.demo.reportportal.io/api/v1',
-      launchName: 'testlaunch',
-      projectName: 'nadhodegw_personal'
-    }
+    // reportportal: {
+    //   enabled: true,
+    //   require: '@reportportal/agent-js-codecept',
+    //   token: '59efa91b-e0fe-4ce8-b075-922f227ba5e2',
+    //   endpoint: 'https://web.demo.reportportal.io/api/v1',
+    //   launchName: 'testlaunch',
+    //   projectName: 'nadhodegw_personal'
+    // }
   },
   tests: './*.steps.js',
   name: 'email-portal-test'

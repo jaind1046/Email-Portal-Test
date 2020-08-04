@@ -3,7 +3,7 @@ const {
     I
 } = inject();
 
-Given('I am on the login page', () => I.amOnPage('/'));
+//Given('I am on the login page', () => I.amOnPage('/'));
 
 When('I click Forgotten Password', () => {
     I.goToPasswordResetPage();
