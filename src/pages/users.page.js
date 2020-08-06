@@ -19,7 +19,7 @@ module.exports = {
 }, 
     
     async setNewUserName(userName) {
-        const element =  locate(this.newUserNameField);
+        const element =  this.newUserNameField;
         I.fillField(element,userName);
     },
 

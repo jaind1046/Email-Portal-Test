@@ -5,7 +5,7 @@ exports.config = {
       url: 'process.env.URL' || 'https://qa1.curlywurly.me',
       email: 'process.env.QA_EMAIL',
       password: 'process.env.QA_PASSWORD',
-      show: true,
+      show: false,
       windowSize: '1536 x 826',
      chrome: {
        args: ['--no-sandbox', '--window-size=1536,826'],
@@ -77,14 +77,14 @@ exports.config = {
       deleteSuccessful: false,
       screenshotsForAllureReport: false
     },
-    reportportal: {
-      enabled: true,
-      require: '@reportportal/agent-js-codecept',
-      token: '59efa91b-e0fe-4ce8-b075-922f227ba5e2',
-      endpoint: 'https://web.demo.reportportal.io/api/v1',
-      launchName: 'testlaunch',
-      projectName: 'nadhodegw_personal'
-    }
+    // reportportal: {
+    //   enabled: true,
+    //   require: '@reportportal/agent-js-codecept',
+    //   token: '59efa91b-e0fe-4ce8-b075-922f227ba5e2',
+    //   endpoint: 'https://web.demo.reportportal.io/api/v1',
+    //   launchName: 'testlaunch',
+    //   projectName: 'nadhodegw_personal'
+    // }
   },
   tests: './*.steps.js',
   name: 'email-portal-test'

@@ -22,7 +22,6 @@ Given('I am logged in as required tenant', () => {
 });
 
 Given('I am on the users screen', () => {
-    usersPage.clickUsersTab();
     I.goToUsers();
 });
 
