@@ -1,5 +1,5 @@
+@fileReleaseRequest
 Feature: FileReleaseRequest
-
 
 	@TC_99646
 	Scenario: Request the release of a held file to a recipient via Portal
@@ -11,7 +11,6 @@ Feature: FileReleaseRequest
 		# Then the success notification is displayed as: "File Release Request Sent"
 		# And The File Release Request count is increased 
 	
-
 	@TC_101095
 	Scenario: Request the release of a held file via receipt held file report
 		# Given I send a mail with no subject with a file attachment
