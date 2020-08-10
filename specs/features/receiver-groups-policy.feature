@@ -3,7 +3,7 @@ Feature: Receiver Group Policy Admin
    Feature Description
 
    Background:
-      Given I'm on the Policy Receiver Groups draft page
+      Given I am on the Policy Receiver Groups draft page
 
    @TC_99208
    Scenario: Publish a Receiver Policy Group

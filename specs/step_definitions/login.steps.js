@@ -19,8 +19,7 @@ When('I enter valid username & invalid password', () => {
     I.enterInvalidPassword();
 });
 Then('The error shows Incorrect username or password, please try again is displayed', () =>{
-    I.seeElement('//*[@id="loginForm"]/span')
-   
+    I.seeElement(loginPage.getLoginErrorElement());   
 });
 When('I enter valid username & expired password', () => {
     throw new Error('Not implemented yet');

@@ -21,7 +21,6 @@ Feature: Content Management Policy Admin
 
     @TC_99638
     Scenario: Publishing a policy rule
-        Given I have added or edited & saved a policy
-        When I click the PUBLISH button
-        Then the success message is displayed
-        And the Published changes are reflected by the current policy processing rules
+        When I have added or edited & saved a policy and I click the PUBLISH button
+        Then the success message is displayed and the Published changes are reflected by the current policy processing rules
+     

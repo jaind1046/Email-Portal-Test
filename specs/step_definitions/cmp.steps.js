@@ -49,7 +49,7 @@ Then('the success message is displayed', () => {
     throw new Error('Not implemented yet');
 });
 
-And('the Published changes are reflected by the current policy processing rules', () => {
+Then('the Published changes are reflected by the current policy processing rules', () => {
     // From "specs\features\content-management-policy.feature" {"line":27,"column":9}
     throw new Error('Not implemented yet');
 });
