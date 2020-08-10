@@ -1,3 +1,4 @@
+@allowedDomain
 Feature: Alowed Domains Admin
 
     Background: Allowed Domains page
@@ -5,33 +6,33 @@ Feature: Alowed Domains Admin
         Given I am on the Allowed Domains page
 
        
-    @addDomain
+    @TC_99225
     Scenario: Add a Allowed Domain
         
         When I add a valid Domain and save
         Then The Domain is validated with a green tick
 
-    @uploadDomain
+    @TC_101253
     Scenario: Upload a Allowed Domain csv file
         When I Import a csv file containing a valid Allowed Domain
         Then The Domain is validated with a green tick
 
-    @delDomain
+    @TC_99227
     Scenario: Delete a Allowed Domain
         When I click delete on a existing Domain entry and save changes
         Then The Domain record is deleted
 
-    @editdomain
+    @TC_99229
     Scenario: Edit a Allowed Domain
         When I update a current Allowed Domain with a valid one and save
         Then The Domain is validated with a green tick
    
-    @addinvaldomain
+    @TC_103056
     Scenario: Add a invalid Allowed Domain
-        When I click + to add a Allowed Domain
-        And I enter a invalid Domain and save
+        When I enter a invalid Domain and save
         Then The Domain is not validated with a warning icon
-
+    
+    @TC_103057
     Scenario: Revert a Allowed Domain Deletion
         When I click delete on a existing Domain entry and revert
         Then The Domain record is not deleted

@@ -74,6 +74,10 @@ module.exports = {
       I.click(element);
     },
 
+    async getLoginErrorElement() {
+      return ('//*[@id="loginForm"]/span')
+    },
+
     /*
      * ForgotPasswordLink
      * ***************************************************************
@@ -116,6 +120,7 @@ module.exports = {
       I.click(element);
     },
 
+   
     /*
      * Dev
      * ***************************************************************
@@ -236,6 +241,8 @@ module.exports = {
     //   I.clickLink(this.fields.passwordResetLink);
 
     // },
+
+    
 
   
 

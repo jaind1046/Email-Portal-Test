@@ -11,6 +11,27 @@ const env = require('../../credentials')
 module.exports = function () {
   return actor({
 
+    // Navigate to Login page function
+    onLoginPage: function () {
+      this.amOnPage('https://qa1.curlywurly.me')
+      this.wait(5)
+    },
+
+    // Enter Email address and Password 
+
+    enterValidCredential: function()
+    {
+      loginPage.loginWith(env.qa.email, env.qa.password)
+      this.wait(5)
+
+    },
+
+    enterInvalidPassword: function()
+    {
+      loginPage.loginWith(env.qa.email, env.qa.inValidPassword)
+      this.wait(5)
+    },
+
     login: function () {
       this.amOnPage('https://qa1.curlywurly.me')
       loginPage.loginWith(env.qa.email, env.qa.password)

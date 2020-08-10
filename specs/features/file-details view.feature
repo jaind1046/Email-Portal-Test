@@ -1,12 +1,11 @@
+@fileDetailsView
 Feature: File Details View
 
     @TC_103214
     Scenario: File details validation
         Given I am logged into the portal	
-	    And there are mails in the transaction log with attachments	
-	    When I click on a mail	
-	    And click on a file	
-	    Then I am taken to the file details screen	
-	    And this contains all the relevant information required	
-	    And also contains a request release button	
+	    When there are mails in the transaction log with attachments  	
+	    Then I click on a mail and click on file to open file details screen it should have the relevant information required and release button	
+	    
+	
 				

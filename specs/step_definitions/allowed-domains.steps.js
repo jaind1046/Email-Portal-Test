@@ -41,11 +41,6 @@ When('I update a current Allowed Domain with a valid one and save', () => {
   throw new Error('Not implemented yet');
 });
 
-When('I click + to add a Allowed Domain', () => {
-  // From "specs\features\allowed-domains.feature" {"line":27,"column":9}
-  throw new Error('Not implemented yet');
-});
-
 When('I enter a invalid Domain and save', () => {
   // From "specs\features\allowed-domains.feature" {"line":28,"column":9}
   throw new Error('Not implemented yet');
