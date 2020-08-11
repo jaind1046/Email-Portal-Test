@@ -1,3 +1,4 @@
+@policyAdmin
 Feature: policy Administration
 
     Background: Logged in to Portal
