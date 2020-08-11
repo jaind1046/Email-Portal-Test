@@ -11,7 +11,8 @@ Feature: Transaction log View
 
     @TC_101732
     Scenario: Transaction Log pagination
-        Given Given I am on transaction log screen 	
-	    When There are more items than can be displayed on one page in the log	
-		Then A change page button is clicked and the correct page is displayed
+        Given I am on transaction log screen 	
+	    When There are more items than can be displayed on one page in the log
+		And A change page button is clicked
+		Then The correct page is displayed
 

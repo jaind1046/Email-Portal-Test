@@ -6,14 +6,15 @@ Feature: Notification
     @TC_103000
     Scenario: New Password Reset Confirmation email received and all links and actions work
         Given I have received a password reset request email
-        When I have clicked the link and completed all form fields and click submit
+        When I have clicked the link 
+        And completed all form fields and click submit
         Then I have received a password reset confirmation email and all links in received email work
     
     @TC_103001
     Scenario: New Password Reset Request email received and all links and actions work
         Given I have opened the forgotten password from on the portal
         When I have submitted a valid email of an existing user and click SEND LINK
-        Then have received the password reset request email
+        Then I have received the password reset request email
 
     @TC_103002
     Scenario: Already Actived Account email received and all links and actions work

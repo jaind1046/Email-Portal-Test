@@ -6,7 +6,7 @@ Feature: Password reset
     Scenario: Change Password in user admin
         Given I am logged into the portal and clicked on Change Password
         When I enter my current password and new password and Click Save
-        Then a success notification is displayed
+        Then A success notification is displayed
 
     @TC_108027
     Scenario: Go to password reset page
@@ -18,8 +18,9 @@ Feature: Password reset
     @TC_99113
     Scenario: Successful password reset
         Given I click Forgotten Password, enter details and click send link with the captcha validation 
-        When I open the mail and click the password reset link and enter new password and submit
-        Then the password is successfully reset
+        When I open the mail and click the password reset link 
+        And enter new password and submit
+        Then The password is successfully reset
 
     @TC_99114
     Scenario: Password reset with invalid details
