@@ -5,6 +5,7 @@ const groupsPage = require('../../src/pages/groups.page')
 const loginPage = require('../../src/pages/login.page')
 const policyPage = require('../../src/pages/policy.page')
 const allowedDomainsPage = require('../../src/pages/allowed-domains.page')
+const systemSettingsPage = require('../../src/pages/system-settings.page')
 const relayEndpointsPage = require('../../src/pages/relay-endpoints.page')
 const env = require('../../credentials')
 
@@ -110,7 +111,7 @@ module.exports = function () {
 
     goToAllowedDomains: function () {
       homePage.goToConfigurations();
-      this.click(allowedDomainsPage.allowedDomainsTab);
+      this.click(allowedDomainsPage.buttons.allowedDomainsTab);
     },
 
     goToRelayEndpoints: function () {
@@ -119,7 +120,8 @@ module.exports = function () {
     },
 
     goToSystemSettings: function (homePage) {
-      homePage.goToSettings();
+      homePage.clickConfigurations();
+      systemSettingsPage.goToSettings();
     },
 
 

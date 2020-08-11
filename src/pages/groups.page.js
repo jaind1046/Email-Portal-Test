@@ -1,80 +1,96 @@
-const {I} = inject();
+const {
+    I
+} = inject();
 
 module.exports = {
 
-        userManagementUrl: '/User',
+    //Locators   
+
+    fields: {
+        newGroupNameField: `input[class='group-input-display-name']`,
+    },
+    lists: {
+        newRoleDropDown: `#userGroupsTable2 > tbody > tr.group-dirty.group-row.new-group-row.new-unsaved-line > td:nth-child(2) > select`,
+        groups: `span[class*='select2-dropdown']`,
+    },
+    buttons: {
+        groupsTab: `button[id='tab-l1-2']`,
+        cancelSaveGroup: `button[id='cancelSaveGroupButton']`,
+        saveGroup: `button[id='saveGroupButton']`,
+        groupDelete: `tr[class*='group-id-511ffd70-0379-48c4-bad1-b84344f372f7'] > td:nth-of-type(4)`,
+        groupUserCount: `tr[class*='group-id-511ffd70-0379-48c4-bad1-b84344f372f7'] > td:nth-of-type(4) > button`,
+        addGroup: `section[id='tab-l1-2-content'] > header > div > button:nth-of-type(2)`,
+    },
+    table: {
+        groupTableRecord: `#userGroupsTable2 > tbody > tr.group-has-users.existing-group.group-row.group-id-511ffd70-0379-48c4-bad1-b84344f372f7.even`,
+        groupTable: `table[id='userGroupsTable2']`,
+    },
 
 
+    //Methods 
 
-        /*
-        * GroupsTab
-        * ***************************************************************
-        */
-        async getGroupsTabElement() {
-            return (`button[id='tab-l1-2']`);
-        },
-        async clickGroupsTab() {
-            const element = await this.getGroupsTabElement();
-            I.click(element);
-        },
+    /*
+     * GroupsTab
+     * ***************************************************************
+     */
+    async clickGroupsTab() {
+        const element = this.buttons.groupsTab;
+        I.click(element);
+    },
 
-        /*
-         * GroupList
-         * ***************************************************************
-         */
-        async getGroupListElement() {
-            return (`select[class*='select2-users']`);
-        },
+    async getGroupListText() {
+        const element = this.lists.groups;
+        return await I.grabTextFrom(element);
+    },
 
-        async getGroupListText() {
-            const element = await this.getGroupListElement();
-            return await (await this.page.evaluate(el => el.options[el.selectedIndex].text, element));
-        },
+    async getGroupListValue() {
+        const element = this.lists.groups;
+        return await I.grabValueFrom(element)
+    },
 
-        async getGroupListValue() {
-            const element = await this.getGroupListElement();
-            return await (await page.evaluate(el => el.options[el.selectedIndex].value, element));
-        },
+    async setGroupListByValue(value) {
+        const element = this.lists.groups;
+        I.selectOption(element, value)
+    },
 
-        async setGroupListByValue(value) {
-            const element = await this.getGroupListElement();
-            await (await page.evaluate(el => {
-                Array.from(el.options).find(o => o.value === value).selected = 'selected';
-            }, element));
-        },
+    /*
+     * AddingSavingGroups
+     * ***************************************************************
+     */
+    async clickCancelSaveGroupButton() {
+        const element = this.buttons.cancelSaveGroup;
+        I.click(element);
+    },
 
-        async setGroupListByText(text) {
-            const element = await this.getGroupListElement();
-            await (await page.evaluate(el => {
-                Array.from(el.options).find(o => o.text === text).selected = 'selected';
-            }, element));
-        },
+    async clickSaveGroupButton() {
+        const element = this.buttons.saveGroup;
+        I.click(element);
+    },
 
-        /*
-         * CancelSaveGroupButton
-         * ***************************************************************
-         */
+    async setNewGroupName(groupName) {
+        const element = this.fields.newGroupNameField;
+        I.fillField(element, groupName);
+    },
 
-        async getCancelSaveGroupButtonElement() {
-            return (`button[id='cancelSaveGroupButton']`);
-        },
+    async selectNewUserGroup(role) {
+        const element = locate(this.lists.newRoleDropDown);
+        I.click(element)
+        I.click("//li[contains(., '" + role + "')]");
+    },
 
-        async clickCancelSaveGroupButton() {
-            const element = await this.getCancelSaveGroupButtonElement();
-            I.click(element);
-        },
+    async clickAddGroupButton() {
+        const element = this.buttons.addGroup;
+        I.click(element);
+    },
 
-        /*
-         * SaveGroupButton
-         * ***************************************************************
-         */
+    async clickDeleteGroupButton() {
+        const element = this.buttons.groupDelete;
+        I.click(element);
+    },
 
-        async getSaveGroupButtonElement() {
-            return (`button[id='saveGroupButton']`);
-        },
+    async getGroupUserCount() {
+        const element = this.buttons.groupUserCount;
+        return await I.grabTextFrom(element)
+    },
 
-        async clickSaveGroupButton() {
-            const element = await this.getSaveGroupButtonElement();
-            I.click(element);
-        }
-    }
+}

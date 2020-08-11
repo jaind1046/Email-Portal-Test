@@ -1,193 +1,134 @@
-
-const {I, usersPage} = inject();
+const {
+    I,
+    usersPage
+} = inject();
 
 module.exports = {
 
-/*
- * RolesTab
- * ***************************************************************
- */
-async getRolesTabElement() {
-    return (`#tab-l1-3`);
-},
-async clickRolesTab(){
-    const element = await this.getRolesTabElement();
-   I.click(element);
- },
+    //Locators   
+
+    fields: {
+        rolesPane: `div[class*='content-left-list-popup']`,
+        displayNameInput: `input[id='displayNameInput']`,
+    },
+    buttons: {
+        rolesTab: `#tab-l1-3`,
+        addRole: `header[class*='list-content-left-header'] > div:nth-of-type(2) > button:nth-of-type(2)`,
+        roleDeleteIcon: `//button[@class='list-item-delete-button tooltip-title']`,
+        cancelRoleEdit: `button[id='cancelRoleEdit']`,
+        saveRole: `button[id='saveRoleButton']`,
+        deleteRoleConfirmCancel: `button[id='deleteRoleConfirmCancel']`,
+        deleteRoleConfirmSave: `button[id='deleteRoleConfirmSave']`,
+    },
+    checkboxes: {
+        approveFileReleaseToggle: `label[for='permission-toggle-860350d4-4dd8-499a-a56b-939c2cf28246']`,
+        requestFileRelease: `label[for='permission-toggle-4a180aad-5ae6-47bc-8f97-e0dff3f5dbb5']`,
+        viewSystemConfiguration: `label[for='permission-toggle-26a8129e-c533-4d09-b961-465c8a8b35de']`,
+        editSystemConfiguration: `label[for='permission-toggle-e30cceb0-e9b2-4a80-9605-a162ca94932e']`,
+        accountAdministration: `label[for='permission-toggle-7e9e3950-1e11-4aa1-bc7c-b4195ce648d1']`,
+        viewInboundPolicyCatalogue: `label[for='permission-toggle-fdcb64d9-5519-4e42-8efa-32574ac2f4b9']`,
+        editInboundPolicyCatalogue: `label[for='permission-toggle-113c6f31-5098-435d-b905-336851ee9e48']`,
+        requestPublishOfInboundPolicyCatalogue: `label[for='permission-toggle-b5378b0c-3796-42e5-a6a7-a424e55f8bcc']`
+    },
 
 
-/*
- * AddBtn
- * ***************************************************************
- */
-async getAddBtnElement() {
-    return (`header[class*='list-content-left-header'] > div:nth-of-type(2) > button:nth-of-type(2)`);
-},
-async clickAddBtn() {
-    const element = await this.getAddBtnElement();
-    I.click(element);
-},
-
-/*
- * RolesPane
- * ***************************************************************
- */
-async getRolesPaneElement() {
-    return (`div[class*='content-left-list-popup']`);
-},
-
-async getAvailableRoles() {
-    const element = await this.getRolesPaneElement();
-    return await locate(element).find('li');
-},
+    //Methods
 
 
-/*
- * AdministrationRole2
- * ***************************************************************
- */
+    /*
+     * RolesTab
+     * ***************************************************************
+     */
+    async clickRolesTab() {
+        const element = this.buttons.rolesTab;
+        I.click(element);
+    },
 
- async clickRole(role){
+    /*
+     * AddingRoles
+     * ***************************************************************
+     */
+    async clickAddBtn() {
+        const element = this.buttons.addRole;
+        I.click(element);
+    },
 
-    const roleList = I.grabNumberOfVisibleElements('//section/div/div/div/div/ul/li');
-    
-    const element =null;
-    for (let i =2; i<roleList.length; i++){
-        var roleName = I.grabTextFrom("//section/div/div/div/div/ul/li["+i+"]/button")
-        if (roleName == role){
-            I.say('role name is found as'+ roleName)
-         element = ("//section/div/div/div/div/ul/li[" + i + "]/button")
-         I.click(element);
-        }
-    break } 
-   // return element;
- },
+    async getAvailableRoles() {
+        const element = this.fields.rolesPane;
+        return await locate(element).find('li');
+    },
 
-async isRoleLinkDisplayed(role) {
-  return I.seeElement("//button[contains(., '" + role + "')]")[0];
-}, 
+    async isRoleLinkDisplayed(role) {
+        return I.seeElement("//button[contains(., '" + role + "')]")[0];
+    },
 
-async selectRole(role) {
-  const element = "//button[contains(., '" +role+ "')]"
-  I.click(element)[0]
-},//I.seeElement("//button[contains(., '" + role + "')]")[0];
+    async selectRole(role) {
+        const element = "//button[contains(., '" + role + "')]"
+        I.click(element)[0]
+    },
 
-async clickDelete() {
-    // await this.selectRole(role)
-    const element = `//button[@class='list-item-delete-button tooltip-title']`;
-    I.click(element)[0];
-},
+    async clickDelete() {
+        const element = this.buttons.roleDeleteIcon;
+        I.click(element)[0];
+    },
 
-async clickAdministrationRole2() {
-    const element = this.getRoleElement(role);
-    I.click(element);
-},
+    async clickRole(role) {
+        const element = this.getRoleElement(role);
+        I.click(element);
+    },
 
-/*
- * RoleInput
- * ***************************************************************
- */
-async getRoleInputElement() {
-    return (`input[id='displayNameInput']`);
-},
-async getRoleDisplayName() {
-    const element = await this.getRoleInputElement();
-    return await I.grabValueFrom(element);
-},
-async setRoleDisplayName(value) {
-    const element = await this.getRoleInputElement();
-    I.fillField(element, value);
-},
+    async getRoleDisplayName() {
+        const element = this.fields.displayNameInput;
+        return await I.grabValueFrom(element);
+    },
+    async setRoleDisplayName(value) {
+        const element = this.fields.displayNameInput;
+        I.fillField(element, value);
+    },
 
- /*
-  * CancelRoleEdit
-  * ***************************************************************
-  */
-
- async getCancelRoleEditElement() {
-     return (`button[id='cancelRoleEdit']`);
- },
-
- async clickCancelRoleEdit() {
-     const element = await this.getCancelRoleEditElement();
-     I.click(element);
- },
-
- /*
-  * SaveRoleButton
-  * ***************************************************************
-  */
-
- async getSaveRoleButtonElement() {
-     return (`button[id='saveRoleButton']`);
- },
-
- async clickSaveRoleButton() {
-     const element = await this.getSaveRoleButtonElement();
-     I.click(element);
- },
-
- /*
-  * DeleteRoleConfirmCancel
-  * ***************************************************************
-  */
-
- async getDeleteRoleConfirmCancelElement() {
-     return (`button[id='deleteRoleConfirmCancel']`);
- },
-
- async clickDeleteRoleConfirmCancel() {
-     const element = await this.getDeleteRoleConfirmCancelElement();
-     I.click(element);
- },
-
- /*
-  * DeleteRoleConfirmSave
-  * ***************************************************************
-  */
-
- async getDeleteRoleConfirmSaveElement() {
-     return (`button[id='deleteRoleConfirmSave']`);
- },
-
- async clickDeleteRoleConfirmSave() {
-     const element = await this.getDeleteRoleConfirmSaveElement();
-     I.click(element);
- }, 
-
-/*
- * ApproveFileReleaseToggle
- * ***************************************************************
- */
-
-async getApproveFileReleaseToggleElement() {
-    return (`label[for='permission-toggle-860350d4-4dd8-499a-a56b-939c2cf28246']`);
-},
-
-async clickApproveFileReleaseToggle() {
-    const element = await this.getApproveFileReleaseToggleElement();
-    I.click(element);
-},
+    async clickSaveRoleButton() {
+        const element = this.buttons.saveRole;
+        I.click(element);
+    },
 
 
-/*
- * ViewSystemConfiguration
- * ***************************************************************
- */
+    /*
+     * Cancel & Deleting Role
+     * ***************************************************************
+     */
+    async clickCancelRoleEdit() {
+        const element = this.buttons.cancelRoleEdit;
+        I.click(element);
+    },
 
-async getViewSystemConfigurationElement() {
-    return (`label[for='permission-toggle-26a8129e-c533-4d09-b961-465c8a8b35de']`);
-},
+    async clickDeleteRoleConfirmCancel() {
+        const element = this.buttons.deleteRoleConfirmCancel;
+        I.click(element);
+    },
 
-async getViewSystemConfiguration() {
-    const element = await this.getViewSystemConfigurationElement();
-    return await I.grabAttributeFrom(el => el.textContent, element);
-},
+    async clickDeleteRoleConfirmSave() {
+        const element = this.buttons.deleteRoleConfirmSave
+        I.click(element);
+    },
 
-async clickViewSystemConfiguration() {
-    const element = await this.getViewSystemConfigurationElement();
-    I.click(element);
-},
+    /*
+     * Role Permissions
+     * ***************************************************************
+     */
+    async clickApproveFileReleaseToggle() {
+        const element = this.checkbox.approveFileReleaseToggle;
+        I.click(element);
+    },
+
+    async getViewSystemConfiguration() {
+        const element = this.checkbox.viewSystemConfiguration;
+        return await I.grabAttributeFrom(el => el.textContent, element);
+    },
+
+    async clickViewSystemConfiguration() {
+        const element = this.checkbox.viewSystemConfiguration;
+        I.click(element);
+    },
 
 
 

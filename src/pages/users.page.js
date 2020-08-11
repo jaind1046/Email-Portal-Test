@@ -1,68 +1,84 @@
-const {I} = inject();
+const {
+    I
+} = inject();
 
 module.exports = {
 
-    usersTab: `button[id='tab-l1-1']`,
-    newUserRow: '#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line',
-    newUserNameField:`#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line > td:nth-child(1)`,
-    newUserEmailField: `//tr[contains(@class,'user-dirty')]/td[2]/input`,
-    newUserGrpDropDown: `#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line > td:nth-child(3) > span`,
-   
-    
+    //Locators   
+
+    fields: {
+        newUserNameField: `#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line > td:nth-child(1)`,
+        newUserEmailField: `//tr[contains(@class,'user-dirty')]/td[2]/input`,
+    },
+    buttons: {
+        usersTab: `button[id='tab-l1-1']`,
+        addUser: `section[id='tab-l1-1-content'] > header > div > button`,
+        deleteUser: `button[class*='action-button']`,
+        cancelSaveUsers: `button[id='cancelSaveUsersButton']`,
+        saveUsers: `button[id='saveUsersButton']`
+    },
+    table: {
+        newUserRow: '#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line',
+    },
+    list: {
+        newUserGrpDropDown: `#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line > td:nth-child(3) > span`,
+
+    },
+
+
+    //Methods
+
     async clickUsersTab() {
-        const element = await this.usersTab;
-         I.click(element);
+        const element = this.buttons.usersTab;
+        I.click(element);
+    },
+
+    /*
+     * AddingUser
+     * ***************************************************************
+     */
+    async clickAddUserBtn() {
+        const element = this.buttons.addUser;
+        I.click(element);
     },
 
     async getNewUserRowNameInput() {
         return await this.getUserRecord(1)
-}, 
-    
+    },
+
     async setNewUserName(userName) {
-        const element =  this.newUserNameField;
-        I.fillField(element,userName);
+        const element = this.fields.newUserNameField;
+        I.fillField(element, userName);
     },
 
     async getNewUserRowEmailInput() {
-      // const element = await this.getUserRecord(1)
-       return await this.getUserRecord(2)
-  }, 
+        return await this.getUserRecord(2)
+    },
     async setNewUserEmail(userEmail) {
-        const element = locate(this.newUserEmailField);
+        const element = locate(this.fields.newUserEmailField);
         I.fillField(element, userEmail);
     },
 
-    async getNewUserGroupDropDown() {
-    //    const element = locate(`#usersTable2 > tbody > tr.user-dirty.user-row.new-user-row.new-unsaved-line > td:nth-child(3) > span`)
-    //    return element;
-    },
     async selectNewUserGroup(userGroup) {
-        const element = locate(this.newUserGrpDropDown);
+        const element = locate(this.lists.newUserGrpDropDown);
         I.click(element)
-        I.click("//li[contains(., '" +userGroup+ "')]");
+        I.click("//li[contains(., '" + userGroup + "')]");
     },
-//  //tr[contains(@class,'user-dirty')]/td[3] 
 
-  async getUserRecord(n) {
-      const element = null;
-   var rows = locate(`//*[@id="usersTable2"]/tbody/tr`);
-    for (let i in rows) {
-        const text = I.grabTextFrom(rows[i] + "/td[" + n + "]/input")
-       if(text===""){
-           element = rows[i] + "/td[" + n + "]/input"
-   }    
-}
-return element;
-},        
-    /*
-     * AddUserBtn
-     * ***************************************************************
-     */
-    async getAddUserBtn() {
-        return `section[id='tab-l1-1-content'] > header > div > button`;
+    async getUserRecord(n) {
+        const element = null;
+        var rows = locate(`//*[@id="usersTable2"]/tbody/tr`);
+        for (let i in rows) {
+            const text = I.grabTextFrom(rows[i] + "/td[" + n + "]/input")
+            if (text === "") {
+                element = rows[i] + "/td[" + n + "]/input"
+            }
+        }
+        return element;
     },
-    async clickAddUserBtn() {
-        const element = await this.getAddUserBtn();
+
+    async clickSaveUsersButton() {
+        const element = this.buttons.saveUsers;
         I.click(element);
     },
 
@@ -70,37 +86,16 @@ return element;
      * DeleteBtn
      * ***************************************************************
      */
-    async getDeleteBtnElement() {
-        return (`button[class*='action-button']`);
-    },
     async clickDeleteBtn() {
-        const element = await this.getDeleteBtnElement();
+        const element = this.buttons.deleteUser;
         I.click(element);
     },
 
-    /*
-     * CancelSaveUsersButton
-     * ***************************************************************
-     */
-    async getCancelSaveUsersButtonElement() {
-        return (`button[id='cancelSaveUsersButton']`);
-    },
     async clickCancelSaveUsersButton() {
-        const element = await this.getCancelSaveUsersButtonElement();
+        const element = this.buttons.cancelSaveUsers;
         I.click(element);
     },
 
-    /*
-     * SaveUsersButton
-     * ***************************************************************
-     */
-    async getSaveUsersButtonElement() {
-        return (`button[id='saveUsersButton']`);
-    },
-    async clickSaveUsersButton() {
-        const element = await this.getSaveUsersButtonElement();
-        I.click(element);
-    },
 
 
 

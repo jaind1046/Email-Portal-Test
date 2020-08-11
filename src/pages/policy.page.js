@@ -1,246 +1,125 @@
 //< reference path = './steps.d.ts' />
 
-const { I } = inject();
+const {
+  I
+} = inject();
 
 module.exports = {
 
+  //Locators   
 
-  policyManagementUrl: '/PolicyManagement',
- 
+  buttons: {
+    previousTab: `button[id='policyTabPrevious']`,
+    currentTab: `button[id='policyTabCurrent']`,
+    policyTabDraft: `button[id='policyTabDraft']`,
+    processingRulesTabPrevious: `ul[class*='previous-tabs'] > li:nth-of-type(1) > button`,
+    senderGroupsTabPrevious: `ul[class*='previous-tabs'] > li:nth-of-type(2) > button`,
+    receiverGroupsTabPrevious: `ul[class*='previous-tabs'] > li:nth-of-type(3) > button`,
+    cmpTabPrevious: `ul[class*='previous-tabs'] > li:nth-of-type(4) > button`,
+    processingRulesTabCurrent: `ul[class*='current-tabs'] > li:nth-of-type(1) > button`,
+    processingRulesTabDraft: `ul[class*='draft-tabs'] > li:nth-of-type(1) > button`,
+    senderGroupsTabCurrent: `ul[class*='current-tabs'] > li:nth-of-type(2) > button`,
+    senderGroupsTabDraft: `ul[class*='draft-tabs'] > li:nth-of-type(2) > button`,
+    receiverGroupsTabCurrent: `ul[class*='current-tabs'] > li:nth-of-type(3) > button`,
+    cmpTabCurrent: `ul[class*='current-tabs'] > li:nth-of-type(4) > button`,
+    receiverGroupsTabDraft: `ul[class*='draft-tabs'] > li:nth-of-type(3) > button`,
+    cmpTabDraft: `ul[class*='current-tabs'] > li:nth-of-type(4) > button`,
+    publishDraftPolicy: `button[id='publishDraftPolicy']`
+  },
   page: {
     title: ".//div[contains(@class, 'numbers__main-title-block')]"
   },
 
- /*
-  * PolicyTabPrevious
-  * ***************************************************************
-  */
-
- async getPolicyTabPreviousElement() {
-   return (`button[id='policyTabPrevious']`);
- },
-
- async clickPolicyTabPrevious() {
-   const element = await this.getPolicyTabPreviousElement();
-   I.click(element);
- },
-
- /*
-  * PreviousProcessingRules
-  * ***************************************************************
-  */
-
- async getPreviousProcessingRulesElement() {
-   return (`ul[class*='previous-tabs'] > li:nth-of-type(1) > button`);
- },
-
- async clickPreviousProcessingRules() {
-   const element = await this.getPreviousProcessingRulesElement();
-   I.click(element);
- },
-
- /*
-  * PreviousSenderGroups
-  * ***************************************************************
-  */
-
- async getPreviousSenderGroupsElement() {
-   return (`ul[class*='previous-tabs'] > li:nth-of-type(2) > button`);
- },
-
- async clickPreviousSenderGroups() {
-   const element = await this.getPreviousSenderGroupsElement();
-   I.click(element);
- },
-
- /*
-  * PreviousReceiverGroups
-  * ***************************************************************
-  */
-
- async getPreviousReceiverGroupsElement() {
-   return (`ul[class*='previous-tabs'] > li:nth-of-type(3) > button`);
- },
-
- async clickPreviousReceiverGroups() {
-   const element = await this.getPreviousReceiverGroupsElement();
-   I.click(element);
- },
-
- /*
-  * PreviousContentManagementPolicies
-  * ***************************************************************
-  */
-
- async getPreviousContentManagementPoliciesElement() {
-   return (`ul[class*='previous-tabs'] > li:nth-of-type(4) > button`);
- },
-
- async clickPreviousContentManagementPolicies() {
-   const element = await this.getPreviousContentManagementPoliciesElement();
-   I.click(element);
- },
-
- /*
-  * PolicyTabCurrent
-  * ***************************************************************
-  */
-
- async getPolicyTabCurrentElement() {
-   return (`button[id='policyTabCurrent']`);
- },
-
- async clickPolicyTabCurrent() {
-   const element = await this.getPolicyTabCurrentElement();
-   I.click(element);
- },
-
- /*
-  * PolicyTabPRcontent
-  * ***************************************************************
-  */
-
- async getPolicyTabPRcontentElement() {
-   return (`section[id='policyTabPR-content']`);
- },
-
- async getPolicyTabPRcontent() {
-   const element = await this.getPolicyTabPRcontentElement();
-   return await I.grabTextFrom(element);
- },
+  
+  //Methods
 
 
+  /*
+   * PolicyTabsPrevious
+   * ***************************************************************
+   */
 
- /*
-  * CurrentProcessingRules
-  * ***************************************************************
-  */
+  async clickPolicyTabPrevious() {
+    const element = this.buttons.policyTabPrevious;
+    I.click(element);
+  },
 
- async getCurrentProcessingRulesElement() {
-   return (`ul[class*='current-tabs'] > li:nth-of-type(1) > button`);
- },
+  async clickPreviousProcessingRules() {
+    const element = this.buttons.processingRulesTabPrevious;
+    I.click(element);
+  },
 
- /*
-  * CurrentSenderGroups
-  * ***************************************************************
-  */
+  async clickPreviousSenderGroups() {
+    const element = this.buttons.senderGroupsTabPrevious;
+    I.click(element);
+  },
 
- async getCurrentSenderGroupsElement() {
-   return (`ul[class*='current-tabs'] > li:nth-of-type(2) > button`);
- },
+  async clickPreviousReceiverGroups() {
+    const element = this.buttons.receiverGroupsTabPrevious;
+    I.click(element);
+  },
 
- async clickCurrentSenderGroups() {
-   const element = await this.getCurrentSenderGroupsElement();
-   I.click(element);
- },
+  async clickPreviousContentManagementPolicies() {
+    const element = this.buttons.cmpTabPrevious;
+    I.click(element);
+  },
 
- /*
-  * CurrentReceiverGroups
-  * ***************************************************************
-  */
+  /*
+   * PolicyTabsCurrent
+   * ***************************************************************
+   */
+  async clickPolicyTabCurrent() {
+    const element = this.buttons.currentTab;
+    I.click(element);
+  },
 
- async getCurrentReceiverGroupsElement() {
-   return (`ul[class*='current-tabs'] > li:nth-of-type(3) > button`);
- },
+  async clickCurrentSenderGroups() {
+    const element = this.buttons.senderGroupsTabCurrent;
+    I.click(element);
+  },
 
- async clickCurrentReceiverGroups() {
-   const element = await this.getCurrentReceiverGroupsElement();
-   I.click(element);
- },
+  async clickCurrentReceiverGroups() {
+    const element = this.buttons.receiverGroupsTabCurrent;
+    I.click(element);
+  },
 
- /*
-  * CurrentContentManagementPolicies
-  * ***************************************************************
-  */
+  async clickCurrentContentManagementPolicies() {
+    const element = this.buttons.cmpTabCurrent;
+    I.click(element);
+  },
 
- async getCurrentContentManagementPoliciesElement() {
-   return (`ul[class*='current-tabs'] > li:nth-of-type(4) > button`);
- },
+  /*
+   * PolicyTabsDraft
+   * ***************************************************************
+   */
+  async clickDraftPolicyTab() {
+    const element = this.buttons.policyTabDraft;
+    I.click(element);
+  },
 
- async clickCurrentContentManagementPolicies() {
-   const element = await this.getCurrentContentManagementPoliciesElement();
-   I.click(element);
- },
+  async clickDraftProcessingRules() {
+    const element = this.buttons.processingRulesTabDraft;
+    I.click(element);
+  },
 
- /*
-  * DraftPolicyTab
-  * ***************************************************************
-  */
+  async clickDraftSenderGroups() {
+    const element = this.buttons.senderGroupsTabDraft;
+    I.click(element);
+  },
 
- async getDraftPolicyTab() {
-   return (`button[id='policyTabDraft']`);
- },
- async clickDraftPolicyTab() {
-   const element = await this.getDraftPolicyTab();
-   I.click(element);
- },
+  async clickDraftReceiverGroups() {
+    const element = this.getDraftReceiverGroupsElement();
+    I.click(element);
+  },
 
- /*
-  * DraftProcessingRules
-  * ***************************************************************
-  */
- async getDraftProcessingRulesElement() {
-   return (`ul[class*='draft-tabs'] > li:nth-of-type(1) > button`);
- },
- async clickDraftProcessingRules() {
-   const element = await this.getDraftProcessingRulesElement();
-   I.click(element);
- },
+  async clickDraftContentManagementPolicies() {
+    const element = this.getDraftContentManagementPoliciesElement();
+    I.click(element);
+  },
 
- /*
-  * DraftSenderGroups
-  * ***************************************************************
-  */
+  async clickPublishDraftPolicy() {
+    const element = this.getPublishDraftPolicyElement();
+    I.click(element);
+  }
 
- async getDraftSenderGroupsElement() {
-   return (`ul[class*='draft-tabs'] > li:nth-of-type(2) > button`);
- },
-
- async clickDraftSenderGroups() {
-   const element = await this.getDraftSenderGroupsElement();
-   I.click(element);
- },
-
- /*
-  * DraftReceiverGroups
-  * ***************************************************************
-  */
-
- async getDraftReceiverGroupsElement() {
-   return (`ul[class*='draft-tabs'] > li:nth-of-type(3) > button`);
- },
-
- async clickDraftReceiverGroups() {
-   const element = await this.getDraftReceiverGroupsElement();
-   I.click(element);
- },
-
- /*
-  * DraftContentManagementPolicies
-  * ***************************************************************
-  */
-
- async getDraftContentManagementPoliciesElement() {
-   return (`ul[class*='draft-tabs'] > li:nth-of-type(4) > button`);
- },
-
- async clickDraftContentManagementPolicies() {
-   const element = await this.getDraftContentManagementPoliciesElement();
-   I.click(element);
- },
-
- 
- /*
-  * PublishDraftPolicy
-  * ***************************************************************
-  */
-
- async getPublishDraftPolicyElement() {
-   return (`button[id='publishDraftPolicy']`);
- },
-
- async clickPublishDraftPolicy() {
-   const element = await this.getPublishDraftPolicyElement();
-   I.click(element);
- },
 }

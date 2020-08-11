@@ -1,81 +1,56 @@
-
-const {I} = inject();
+const {
+    I
+} = inject();
 
 module.exports = {
-        
-/*
- * EmailAddress
- * ***************************************************************
- */
-async getEmailAddressElement() {
-    return (`input[id='Email']`);
-},
 
-async setEmailAddress(value) {
-    const element = await this.getEmailAddressElement();
-    I.fillField(element, value);
-},
+    fields: {
+        email: `input[id='Email']`,
+        captcha: `textarea[id='g-recaptcha-response']`,
+    },
+    buttons: {
+        accountActivationCancel: `button[id='accountActivationCancelButton']`,
+        send: `button[class*='send-button']`,
+    },
 
-/*
- * Grecaptcharesponse
- * ***************************************************************
- */
-async getGrecaptcharesponseElement() {
-    return (`textarea[id='g-recaptcha-response']`);
-},
+    /*
+     * EmailAddress
+     * ***************************************************************
+     */
+    async setEmailAddress(value) {
+        const element = locate(this.fields.email);
+        I.fillField(element, value);
+    },
 
-async getGrecaptcharesponse() {
-    const element = await this.getGrecaptcharesponseElement();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
+    /*
+     * Grecaptcharesponse
+     * ***************************************************************
+     */
+    async getGrecaptcharesponse() {
+        const element = locate(this.fields.captcha);
+        return await I.grabAttributeFrom(element, jsonValue());
+    },
+    async setGrecaptcharesponse(value) {
+        const element = locate(this.fields.captcha);
+        I.fillField(element, value);
+    },
 
-async setGrecaptcharesponse(value) {
-    const element = await this.getGrecaptcharesponseElement();
-    I.fillField(element, value);
-},
+    /*
+     * AccountActivationCancelBtn
+     * ***************************************************************
+     */
+    async clickAccountActivationCancelBtn() {
+        const element = locate(this.buttons.fieldsaccountActivationCancel);
+        I.click(element);
+    },
 
-/*
- * AccountActivationCancelBtn
- * ***************************************************************
- */
-async getAccountActivationCancelBtnElement() {
-    return (`button[id='accountActivationCancelButton']`);
-},
-
-async clickAccountActivationCancelBtn() {
-    const element = await this.getAccountActivationCancelBtnElement();
-    I.click(element);
-},
-
-/*
- * SendLink
- * ***************************************************************
- */
-async getSendLinkElement() {
-    return (`button[class*='send-button']`);
-},
-
-async clickSendLink() {
-    const element = await this.getSendLinkElement();
-    I.click(element);
-},
-
-/*
- * RequestVerificationToken
- * ***************************************************************
- */
-async getRequestVerificationTokenElement() {
-    return (`input[name='__RequestVerificationToken']`);
-},
-
-async getRequestVerificationToken() {
-    const element = await this.getRequestVerificationTokenElement();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
-
-async setRequestVerificationToken(value) {
-    const element = await this.getRequestVerificationTokenElement();
-    I.fillField(element, value);
-}
+    /*
+     * SendLink
+     * ***************************************************************
+     */
+    async clickSendLink() {
+        const element = locate(this.buttons.send);
+        I.click(element);
+    },
 
 }

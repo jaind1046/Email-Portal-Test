@@ -4,102 +4,130 @@ const {
 
 module.exports = {
 
-    allowedDomainsTab: `button[id='tab-l1-1']`,
-    validatedDomainTick: `tr[class*='even'] > td:nth-of-type(2) > div`,
+    //locators
+    fields: {
+        allowedDomainsInput: '#allowedDomainsInput',
+        domainOne: `input[name='domain[1]']`
+    },
+    buttons: {
+        allowedDomainsTab: `button[id='tab-l1-1']`,
+        validatedDomainTick: `tr[class*='even'] > td:nth-of-type(2) > div`,
+        importAllowedDomains: '#importAllowedDomains',
+        addAllowedDomain: `#addAllowedDomain`,
+        cancelSaveAllowedDomains: `button[id='cancelSaveAllowedDomainsButton']`,
+        saveAllowedDomains: `button[id='saveAllowedDomainsButton']`,
+        delete: `tr.allowed-domain-row.existing-allowed-domain.even > td:nth-child(3) > button`,
+        revertDelete: `tr[class*='even'] > td:nth-of-type(3) > button`,
+        configModalSaveButton: `button[id='configModalSaveButton']`,
+        cancelConfigDeleteConfirm: `button[id='cancelConfigDeleteConfirm']`,
+        configurationDeleteModalClose: `button[id='configurationDeleteModalClose']`
+    },
+    modal: {
+        configurationDeleteModalContainer: `section[id='configurationDeleteModalContainer']`
+    },
 
-/*
- * AllowedDomainsInput
- * ***************************************************************
- */
-async getAllowedDomainsInput() {
-    return ('#allowedDomainsInput');
-},
-async getAllowedDomainsValue() {
-    const element = await this.getAllowedDomainsValue();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
-async setAllowedDomainsInput(value) {
-    const element = await this.getAllowedDomainsInput();
-    I.fillField(element, value);
-},
 
-/*
- * ImportAllowedDomains
- * ***************************************************************
- */
-async getImportAllowedDomainsElement() {
-    return '#importAllowedDomains';
-},
-async clickImportAllowedDomains() {
-    const element = await this.getImportAllowedDomainsElement();
-    I.click(element);
-},
+    //Methods
 
-async attachDomainRecord() {
-    await this.clickImportAllowedDomains();
-    I.attachFile(await this.getAllowedDomainsInput(), './src/data/domain_1.csv');
-},
+    /*
+     * AllowedDomainsInput
+     * ***************************************************************
+     */
+    async getAllowedDomainsValue() {
+        const element = this.fields.allowedDomainsInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    },
+    setAllowedDomainsInput(value) {
+        const element = this.fields.allowedDomainsInput;
+        I.fillField(element, value);
+    },
 
-async uploadCsv(){
-    await this.clickImportAllowedDomains();
-    I.attachFile(this.getAllowedDomainsInput(), './src/data/domain_1.csv');
-    I.click(await this.getSaveAllowedDomainsButton())
-},
+    /*
+     * ImportAllowedDomains
+     * ***************************************************************
+     */
+    clickImportAllowedDomains() {
+        const element = this.buttons.importAllowedDomains;
+        I.click(element);
+    },
 
-/*
- * AddAllowedDomain
- * ***************************************************************
- */
-async getAddAllowedDomainElement() {
-    return (`#addAllowedDomain`);
-},
-async clickAddAllowedDomain() {
-    const element = await this.getAddAllowedDomainElement();
-    I.click(element);
-},
+    async attachDomainRecord(file) {
+        await this.clickImportAllowedDomains();
+        I.attachFile(await this.fields.allowedDomainsInput, file);
+    },
 
-/*
- * DomainElement
- * ***************************************************************
- */
-async getDomainInput() {
-    return (`input[name='domain[1]']`);
-},
+    async uploadCsv(file) {
+        await this.clickImportAllowedDomains();
+        I.attachFile(this.fields.allowedDomainsInput, file);
+        I.click(await this.buttons.saveAllowedDomains)
+    },
 
-async getDomainValue() {
-    const element = await this.getDomainInput();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
+    /*
+     * AddAllowedDomain
+     * ***************************************************************
+     */
 
-async setDomain(value) {
-    const element = await this.getDomainInput();
-    I.fillField(element, value);
-},
+    clickAddAllowedDomain() {
+        const element = this.buttons.addAllowedDomain;
+        I.click(element);
+    },
 
-/*
- * CancelSaveAllowedDomainsButton
- * ***************************************************************
- */
-async getCancelSaveAllowedDomainsButton() {
-    return (`button[id='cancelSaveAllowedDomainsButton']`);
-},
-async clickCancelSaveAllowedDomains() {
-    const element = await this.getCancelSaveAllowedDomainsButton();
-    I.click(element);
-},
+    async getDomainOneValue() {
+        const element = this.fields.domainOne;
+        return await I.grabAttributeFrom(element, jsonValue());
+    },
 
-/*
- * SaveAllowedDomainsButton
- * ***************************************************************
- */
-async getSaveAllowedDomainsButton() {
-    return (`button[id='saveAllowedDomainsButton']`);
-},
-async clickSaveAllowedDomainsButton() {
-    const element = await this.getSaveAllowedDomainsButton();
-    I.click(element);
-}
+    setDomain(value) {
+        const element = this.fields.domainOne;
+        I.fillField(element, value);
+    },
 
+    /*
+     * AllowedDomainsButtonSaving
+     * ***************************************************************
+     */
+    clickCancelSaveAllowedDomains() {
+        const element = this.buttons.cancelSaveAllowedDomains;
+        I.click(element);
+    },
+
+    clickSaveAllowedDomainsButton() {
+        const element = this.buttons.saveAllowedDomains;
+        I.click(element);
+    },
+
+    /*
+     * Deleting a domain
+     * ***************************************************************
+     */
+    async clickDelete() {
+        const element = this.buttons.delete;
+        I.click(element);
+    },
+
+    async clickRevert() {
+        const element = this.buttons.revertDelete;
+        I.click(element);
+    },
+
+    /*
+     * ConfigModal
+     * ***************************************************************
+     */
+    async clickConfigModalSaveButton() {
+        const element = this.buttons.configModalSaveButton;
+        I.click(element);
+    },
+
+    async clickCancelConfigDeleteConfirm() {
+        const element = this.buttons.cancelConfigDeleteConfirm;
+        I.click(element);
+    },
+
+    async clickConfigurationDeleteModalClose() {
+        const element = this.buttons.configurationDeleteModalClose;
+        I.click(element);
+    },
 
 
 }

@@ -1,131 +1,90 @@
 module.exports = {
 
+    //Locators   
 
-
-
-    /*
-     * AddNewSenderGroupButton
-     * ***************************************************************
-     */
-
-    async getAddNewSenderGroupButtonElement() {
-        return (`button[id='addNewSenderGroupButton']`);
+    fields: {
+        mailBoxInput: `input[class*='user-defined-mailbox-input']`,
+        domainNameInput: `#senderGroupDomainTable > tbody > tr.new-unsaved-line.even > td:nth-child(1) > input`,
+        policyOptionNameInput: `input[class*='policyOptionNameInput']`
+    },
+    buttons: {
+        addNewSenderGroup: `button[id='addNewSenderGroupButton']`,
+        addSenderDomain: `button[id='AddSenderDomainButton']`,
+        addSenderMailBox: `button[id='AddSenderMailboxButton']`,
+        deleteSenderPolicy: `button[id='deleteSPButton']`,
+        cancelSenderPolicy: `button[id='cancelSPButton']`,
+        saveSenderPolicy: `button[id='saveSPButton']`,
+        deleteSenderGroupConfirmCancel: `button[id='deleteSenderGroupConfirmCancel']`,
+        deleteSenderGroupConfirmSave: `button[id='deleteSenderGroupConfirmSave']`,
     },
 
+
+    //Methods
+
+    /*
+     * AddNewSenderGroup & Domain
+     * ***************************************************************
+     */
     async clickAddNewSenderGroupButton() {
-        const element = await this.getAddNewSenderGroupButtonElement();
+        const element = this.buttons.addNewSenderGroup;
         I.click(element);
-    },
-
-    /*
-     * AddSenderDomainButton
-     * ***************************************************************
-     */
-
-    async getAddSenderDomainButtonElement() {
-        return (`button[id='AddSenderDomainButton']`);
     },
 
     async clickAddSenderDomainButton() {
-        const element = await this.getAddSenderDomainButtonElement();
+        const element = this.buttons.addSenderDomain;
         I.click(element);
-    },
-
-    /*
-     * AddSenderMailboxButton
-     * ***************************************************************
-     */
-
-    async getAddSenderMailboxButtonElement() {
-        return (`button[id='AddSenderMailboxButton']`);
     },
 
     async clickAddSenderMailboxButton() {
-        const element = await this.getAddSenderMailboxButtonElement();
+        const element = this.buttons.addSenderMailBox;
         I.click(element);
-    },
-
-    /*
-     * DeleteSpButton
-     * ***************************************************************
-     */
-
-    async getDeleteSpButtonElement() {
-        return (`button[id='deleteSPButton']`);
-    },
-
-    async clickDeleteSpButton() {
-        const element = await this.getDeleteSpButtonElement();
-        I.click(element);
-    },
-
-    /*
-     * CancelSpButton
-     * ***************************************************************
-     */
-
-    async getCancelSpButtonElement() {
-        return (`button[id='cancelSPButton']`);
-    },
-
-    async clickCancelSpButton() {
-        const element = await this.getCancelSpButtonElement();
-        I.click(element);
-    },
-
-    /*
-     * SaveSpButton
-     * ***************************************************************
-     */
-
-    async getSaveSpButtonElement() {
-        return (`button[id='saveSPButton']`);
     },
 
     async clickSaveSpButton() {
-        const element = await this.getSaveSpButtonElement();
+        const element = this.buttons.saveSenderPolicy;
         I.click(element);
     },
 
+    async setSendergroupName() {
+        const element = this.fields.policyOptionNameInput;
+        I.fillField(element);
+    },
+
+    async setDomainName() {
+        const element = this.fields.domainNameInput;
+        I.fillField(element);
+    },
+
+    async setMailBox() {
+        const element = this.fields.mailBoxInput;
+        I.fillField(element);
+    },
+
+
     /*
-     * DeleteSenderGroupConfirmC
+     * DeleteCancelSpButton
      * ***************************************************************
      */
 
-    async getDeleteSenderGroupConfirmCElement() {
-        return (`button[id='deleteSenderGroupConfirmCancel']`);
-    },
-
-    async clickDeleteSenderGroupConfirmC() {
-        const element = await this.getDeleteSenderGroupConfirmCElement();
+    async clickDeleteSpButton() {
+        const element = this.buttons.deleteSenderPolicy;
         I.click(element);
     },
 
-    /*
-     * DeleteSenderGroupConfirmS
-     * ***************************************************************
-     */
-
-    async getDeleteSenderGroupConfirmSElement() {
-        return (`button[id='deleteSenderGroupConfirmSave']`);
-    },
-
-    async clickDeleteSenderGroupConfirmS() {
-        const element = await this.getDeleteSenderGroupConfirmSElement();
+    async clickCancelSpButton() {
+        const element = this.buttons.cancelSenderPolicy;
         I.click(element);
     },
-    /*
-     * Button30
-     * ***************************************************************
-     */
 
-    async getButton30Element() {
-        return (`section[id='policyTabSP-content'] > section:nth-of-type(1) > header > div:nth-of-type(1) > button`);
-    },
-
-    async clickButton30() {
-        const element = await this.getButton30Element();
+    async clickCancelOnDeleteSenderGroupConfirm() {
+        const element = this.buttons.deleteSenderGroupConfirmCancel;
         I.click(element);
     },
+
+    async clickSaveOnDeleteSenderGroupConfirm() {
+        const element = this.getDeleteSenderGroupConfirmSElement();
+        I.click(element);
+    },
+
 
 }

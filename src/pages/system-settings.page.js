@@ -4,149 +4,134 @@ const {
 
 module.exports = {
 
+    //Locators   
 
-/*
- * Copy
- * ***************************************************************
- */
+    fields: {
+        tenantIdBox: `#settingsFormElements > div.settings-list-container.single-item > div > span`,
+        maximumFileSizeInMegabytesInput: `input[name='maximumFileSizeInMegabytesInput']`,
+        heldDurationInput: `input[name='heldDuration']`,
+        successDurationInput: `input[name='successDuration']`
+    },
+    buttons: {
+        systemSettingsTab: `button[id='tab-l1-3']`,
+        copy: `div[id='settingsFormElements'] > div:nth-of-type(1) > div > button`,
+    },
+    checkboxes: {
+        insertTransactionIDIntoMailHeadersToggle: `label[for='58223b4c-9b20-475c-89d4-9512312f3a31']`,
+        analysisOnlyModeToggle: `label[for='e00b29a6-f339-4b91-9e61-ee03bf2b104b']`
+    },
 
-async getCopyElement() {
-    return (`div[id='settingsFormElements'] > div:nth-of-type(1) > div > button`);
-},
 
-async clickCopy() {
-    const element = await this.getCopyElement();
-    I.click(element);
-},
+    //Methods
 
-/*
- * TenantId
- * ***************************************************************
- */
-async getTenantElement() {
-    return (`#settingsFormElements > div.settings-list-container.single-item > div > span`);
-},
 
-async isTenantIdAccurate(id) {
-    const element = await this.getTenantElement();
-    I.see(id,element);
-},
-
-async setElement096F6Cfea83548E9Be(onOrOff) {
-    const val = await this.getElement096F6Cfea83548E9Be();
-    if ((onOrOff && !val) || (!onOrOff && val)) {
-        const element = await this.getElement096F6Cfea83548E9BeElement();
+    async goToSettings() {
+        const element = this.buttons.systemSettingsTab;
         I.click(element);
-    }
-},
+    },
 
-
-/*
- * MaximumFileSizeInMegabyte
- * ***************************************************************
- */
-
-async getMaximumFileSizeInMegabyteElement() {
-    return (`input[name='maximumFileSizeInMegabytesInput']`);
-},
-
-async getMaximumFileSizeInMegabyte() {
-    const element = await this.getMaximumFileSizeInMegabyteElement();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
-
-async setMaximumFileSizeInMegabyte(value) {
-    const element = await this.getMaximumFileSizeInMegabyteElement();
-    I.fillField(element, value);
-},
-
-/*
- * Bf528Eeb01B647D8A555Bd21C
- * ***************************************************************
- */
-
-async getBf528Eeb01B647D8A555Bd21CElement() {
-    return (`input[id='bf528eeb-01b6-47d8-a555-bd21c88f646b']`);
-},
-
-async getBf528Eeb01B647D8A555Bd21C() {
-    const element = this.getBf528Eeb01B647D8A555Bd21CElement();
-    return await (await element.getProperty('checked')).jsonValue();
-},
-
-async setBf528Eeb01B647D8A555Bd21C(onOrOff) {
-    const val = await this.getBf528Eeb01B647D8A555Bd21C();
-    if ((onOrOff && !val) || (!onOrOff && val)) {
-        const element = await this.getBf528Eeb01B647D8A555Bd21CElement();
+    /*
+     * TenantId
+     * ***************************************************************
+     */
+    async clickCopy() {
+        const element = this.buttons.copy;
         I.click(element);
-    }
-},
+    },
 
-/*
- * HeldDuration
- * ***************************************************************
- */
+    async isTenantIdAccurate(id) {
+        const element = this.fields.tenantIdBox;
+        I.see(id, element);
+    },
 
-async getHeldDurationElement() {
-    return (`input[name='heldDuration']`);
-},
+    /*
+     * MaximumFileSizeInMegabyte
+     * ***************************************************************
+     */
+    async getMaximumFileSizeInMegabyte() {
+        const element = this.fields.maximumFileSizeInMegabytesInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    },
 
-async getHeldDuration() {
-    const element = await this.getHeldDurationElement();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
+    async setMaximumFileSizeInMegabyte(value) {
+        const element = this.fields.maximumFileSizeInMegabytesInput;
+        I.fillField(element, value);
+    },
 
-async setHeldDuration(value) {
-    const element = await this.getHeldDurationElement();
-    I.fillField(element, value);
-},
+    /*
+     * InsertTransactionIdIntoMH
+     * ***************************************************************
+     */
+    async isInsertTransactionHeaderChecked() {
+        const element = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
+        return await (await element.getProperty('checked')).jsonValue();
+    },
 
-/*
- * SuccessDuration
- * ***************************************************************
- */
+    async setInsertTransactionHeader(on) {
+        const val = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
+        if (!on && val) {
+            const element = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
+            I.click(element);
+        }
+    },
 
-async getSuccessDurationElement() {
-    return (`input[name='successDuration']`);
-},
+    async setInsertTransactionHeader(Off) {
+        const val = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
+        if (!off && val) {
+            const element = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
+            I.click(element);
+        }
+    },
 
-async getSuccessDuration() {
-    const element = await this.getSuccessDurationElement();
-    return await I.grabAttributeFrom(element, jsonValue());
-},
+    /*
+     * HeldDuration
+     * ***************************************************************
+     */
+    async getHeldDuration() {
+        const element = this.fields.heldDurationInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    },
 
-async setSuccessDuration(value) {
-    const element = await this.getSuccessDurationElement();
-    I.fillField(element, value);
-}
-,
-/*
- * AnalysisOnlyMode
- * ***************************************************************
- */
+    async setHeldDuration(value) {
+        const element = this.fields.heldDurationInput;
+        I.fillField(element, value);
+    },
 
-async getAnalysisOnlyModeElement() {
-    return (`div[class*='settings-list-outer'] > section:nth-of-type(2) > div > label:nth-of-type(1)`);
-},
+    /*
+     * SuccessDuration
+     * ***************************************************************
+     */
+    async getSuccessDuration() {
+        const element = this.fields.successDurationInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    },
 
-async getAnalysisOnlyMode() {
-    const element = await this.getAnalysisOnlyModeElement();
-    return await this.page.evaluate(el => el.textContent, element);
-},
+    async setSuccessDuration(value) {
+        const element = this.fields.successDurationInput;
+        I.fillField(element, value);
+    },
+    /*
+     * AnalysisOnlyMode
+     * ***************************************************************
+     */
+    async isInsertTransactionHeaderChecked() {
+        const element = this.checkboxes.analysisOnlyModeToggle;
+        return await (await element.getProperty('checked')).jsonValue();
+    },
 
-/*
- * InsertTransactionIdIntoMH
- * ***************************************************************
- */
+    async setInsertTransactionHeader(on) {
+        const val = this.checkboxes.analysisOnlyModeToggle;
+        if (!on && val) {
+            const element = this.checkboxes.analysisOnlyModeToggle;
+            I.click(element);
+        }
+    },
 
-async getInsertTransactionIdIntoMHElement() {
-    return (`div[class*='settings-list-outer'] > section:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1)`);
-},
-
-async getInsertTransactionIdIntoMH() {
-    const element = await this.getInsertTransactionIdIntoMHElement();
-    return await this.page.evaluate(el => el.textContent, element);
-}
-
-
+    async setInsertTransactionHeader(Off) {
+        const val = this.checkboxes.analysisOnlyModeToggle;
+        if (!off && val) {
+            const element = this.checkboxes.analysisOnlyModeToggle;
+            I.click(element);
+        }
+    },
 }

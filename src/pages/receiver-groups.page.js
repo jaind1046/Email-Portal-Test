@@ -1,119 +1,77 @@
 module.exports = {
 
+    //Locators   
 
+    fields: {
+        mailBoxInput: `input[class*='user-defined-mailbox-input']`,
+        policyOptionNameInput: `input[class*='policyOptionNameInput']`
+    },
+    buttons: {
+        addNewReceiverGroup: `button[id='addNewReceiverGroupButton']`,
+        addReceiverMailbox: `button[id='AddReceiverMailboxButton']`,
+        deleteReveiverPolicy: `button[id='deleteRPButton']`,
+        canceReveiverPolicy: `button[id='cancelRPButton']`,
+        saveReveiverPolicy: `button[id='saveRPButton']`,
+        deleteReceiverGroupConfirmCancel: `button[id='deleteReceiverGroupConfirmCancel']`,
+        deleteReceiverGroupConfirmSave: `button[id='deleteReceiverGroupConfirmSave']`,
+        deleteNewMailBoxRecord: `button[class*='new-row']`,
+        deleteExistingMailBoxRecord: `button[class*='delete-mailbox-button']`
+    },
+
+
+    //Methods
 
 
     /*
-     * PreviousReceiverGroups
+     * AddingNewReceiverGroup
      * ***************************************************************
      */
-
-    async getPreviousReceiverGroupsElement() {
-        return (`ul[class*='previous-tabs'] > li:nth-of-type(3) > button`);
-    },
-
-    async clickPreviousReceiverGroups() {
-        const element = await this.getPreviousReceiverGroupsElement();
-        I.click(element);
-    },
-
-    /*
-     * AddNewReceiverGroupButton
-     * ***************************************************************
-     */
-
-    async getAddNewReceiverGroupButtonElement() {
-        return (`button[id='addNewReceiverGroupButton']`);
-    },
-
     async clickAddNewReceiverGroupButton() {
-        const element = await this.getAddNewReceiverGroupButtonElement();
+        const element = this.buttons.addNewReceiverGroup;
         I.click(element);
-    },
-
-    /*
-     * AddReceiverMailboxButton
-     * ***************************************************************
-     */
-
-    async getAddReceiverMailboxButtonElement() {
-        return (`button[id='AddReceiverMailboxButton']`);
     },
 
     async clickAddReceiverMailboxButton() {
-        const element = await this.getAddReceiverMailboxButtonElement();
+        const element = this.buttons.addReceiverMailbox;
         I.click(element);
-    },
-
-    /*
-     * DeleteRpButton
-     * ***************************************************************
-     */
-
-    async getDeleteRpButtonElement() {
-        return (`button[id='deleteRPButton']`);
-    },
-
-    async clickDeleteRpButton() {
-        const element = await this.getDeleteRpButtonElement();
-        I.click(element);
-    },
-
-    /*
-     * CancelRpButton
-     * ***************************************************************
-     */
-
-    async getCancelRpButtonElement() {
-        return (`button[id='cancelRPButton']`);
     },
 
     async clickCancelRpButton() {
-        const element = await this.getCancelRpButtonElement();
+        const element = this.buttons.canceReveiverPolicy;
         I.click(element);
-    },
-
-    /*
-     * SaveRpButton
-     * ***************************************************************
-     */
-
-    async getSaveRpButtonElement() {
-        return (`button[id='saveRPButton']`);
     },
 
     async clickSaveRpButton() {
-        const element = await this.getSaveRpButtonElement();
+        const element = this.buttons.saveReveiverPolicy;
         I.click(element);
     },
 
     /*
-     * DeleteReceiverGroupConfir
+     * Deleting Policy & Mail Box
      * ***************************************************************
      */
-
-    async getDeleteReceiverGroupConfirElement() {
-        return (`button[id='deleteReceiverGroupConfirmCancel']`);
-    },
-
-    async clickDeleteReceiverGroupConfir() {
-        const element = await this.getDeleteReceiverGroupConfirElement();
+    async clickDeleteRpButton() {
+        const element = this.buttons.deleteReveiverPolicy;
         I.click(element);
     },
 
-    /*
-     * DeleteReceiverGroupConfir2
-     * ***************************************************************
-     */
-
-    async getDeleteReceiverGroupConfir2Element() {
-        return (`button[id='deleteReceiverGroupConfirmSave']`);
-    },
-
-    async clickDeleteReceiverGroupConfir2() {
-        const element = await this.getDeleteReceiverGroupConfir2Element();
+    async clickDeleteReceiverGroupConfirmCancel() {
+        const element = this.buttons.deleteReceiverGroupConfirmSave;
         I.click(element);
     },
 
+    async clickDeleteReceiverGroupConfirmSave() {
+        const element = this.buttons.deleteReceiverGroupConfirmSave;
+        I.click(element);
+    },
+    async clickDeleteMailBoxButton() {
+        const element = this.buttons.deleteExistingMailBoxRecord;
+        I.click(element);
+    },
+
+    async clickCancelMailBoxButton() {
+        const element = this.buttons.deleteNewMailBoxRecord;
+        I.click(element);
+    },
 
 }
