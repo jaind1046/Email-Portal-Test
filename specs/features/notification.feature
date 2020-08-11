@@ -1,3 +1,4 @@
+@notification
 Feature: Notification
 
     Making sure all email notifications working

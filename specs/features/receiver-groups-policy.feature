@@ -1,3 +1,4 @@
+@receiverGroup
 Feature: Receiver Group Policy Admin
 
    Feature Description
@@ -7,15 +8,12 @@ Feature: Receiver Group Policy Admin
 
    @TC_99208
    Scenario: Publish a Receiver Policy Group
-
-      When I have added or edited & saved a Receiver Group
-      And I click Publish
-      Then the Current Policy is updated with the new one to the current date and time
-      And the Previous Policy is updated to the previous current policy
+      Given I have added or edited & saved a Receiver Group
+      When I click Publish
+      Then The Current Policy is updated with the new one to the current date and time and the Previous Policy is updated to the previous current policy
 
    @TC_103061
    Scenario: Delete a Default Receiver Policy Group
-      Given I'm on Policy Receiver Groups draft page
-      When I select the default group
-      And I click Delete
-      Then The warning is displayed as: 'The Default Sender Group cannot be deleted'
+      Given I am on Policy Receiver Groups draft page
+      When I select the default group I click Delete
+      Then The warning is displayed as: The Default Sender Group cannot be deleted

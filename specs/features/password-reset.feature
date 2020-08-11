@@ -1,3 +1,4 @@
+@passwordReset
 Feature: Password reset
 
 

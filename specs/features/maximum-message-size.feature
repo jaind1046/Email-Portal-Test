@@ -1,4 +1,4 @@
-
+@MaxMessageSize
 Feature: MaximumFileSizeApplication.feature
 
 Background: Logged into portal
