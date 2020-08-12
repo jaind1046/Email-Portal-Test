@@ -21,10 +21,12 @@ Feature: Sender Group Policy Admin
     Scenario: Publish a Sender Policy Group
         Given  I have added or edited & saved a Sender Group
         When I click Publish
-        Then the Current Policy is updated with the new one to the current date and time and the Previous Policy is updated to the previous current policy
+        Then The Current Policy is updated with the new one to the current date and time 
+        And the Previous Policy is updated to the previous current policy
      
 
     @TC_103060
     Scenario: Add a new policy sender group with a domain
-        When I add a new Sender group with a valid Domain name and save
+        When I add a new Sender group with a valid Domain name 
+        And Click save
         Then The new sender group is saved and the success notification: Sender Group has been saved is displayed

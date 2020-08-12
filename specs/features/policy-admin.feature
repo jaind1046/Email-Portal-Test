@@ -26,19 +26,25 @@ Feature: policy Administration
 
     @TC_101910
     Scenario: Retention period set to 91 is not successfully saved 			
-        Given I am on the Configuration>System Settings screen and i am trying to set data retention period to 91	
-        When I click Save Changes	
-        Then the field validation error: "Please enter a value less than or equal to 90" is displayed, the screen validation error: "System settings could not be saved , please check your input" is displayed	and the value is not saved	
+        Given I am on the Configuration>System Settings screen 
+        When I am trying to set data retention period to 91	
+        And I click Save Changes	
+        Then The field validation error: Please enter a value less than or equal to 90 is displayed, 
+        And The screen validation error: System settings could not be saved , please check your input is displayed	
+        And The value is not saved	
 
     @TC_101911
     Scenario: Retention period set to 0 is successfully saved 			
         Given I am on the Configuration>System Settings screen	
-        When i set a data retention period of 0	and save changes
-        Then the value is saved and the success message: is displayed	
+        When I set a data retention period of 0	and save changes
+        Then The value is saved and the success message: is displayed	
  
 
     @TC_101934
     Scenario: Retention period set to -1 is not successfully saved 			
-        Given I am on the Configuration>System Settings screen I set a data retention period of -1	
-        When I click Save Changes	
-        Then The field validation error: "Please enter a positive value" is displayed,	The screen validation error: "System settings could not be saved , please check your input" is displayed and The value is not saved	
+        Given I am on the Configuration>System Settings screen 
+        When I set a data retention period of -1	
+        And I click Save Changes	
+        Then The field validation error: Please enter a positive value is displayed,	
+        And The screen validation error: System settings could not be saved , please check your input is displayed 
+        And The value is not saved	
