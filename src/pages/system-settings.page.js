@@ -23,8 +23,7 @@ module.exports = {
 
 
     //Methods
-
-
+    
     async goToSettings() {
         const element = this.buttons.systemSettingsTab;
         I.click(element);

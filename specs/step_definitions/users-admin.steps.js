@@ -34,6 +34,6 @@ When('I add a new user with a valid email address', () => {
     usersPage.clickSaveUsersButton();  
     });
 
-Then('the new user record is saved', () => {
+Then('The new user record is saved', () => {
     //TODO
 });

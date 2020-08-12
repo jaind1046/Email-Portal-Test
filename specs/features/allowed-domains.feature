@@ -8,7 +8,6 @@ Feature: Alowed Domains Admin
        
     @TC_99225
     Scenario: Add a Allowed Domain
-        
         When I add a valid Domain and save
         Then The Domain is validated with a green tick
 

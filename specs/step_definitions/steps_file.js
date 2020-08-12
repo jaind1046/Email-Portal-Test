@@ -12,13 +12,10 @@ const env = require('../../credentials')
 module.exports = function () {
   return actor({
 
-    // Navigate to Login page function
     onLoginPage: function () {
       this.amOnPage('https://qa1.curlywurly.me')
       this.wait(5)
     },
-
-    // Enter Email address and Password 
 
     enterValidCredential: function()
     {
@@ -42,12 +39,12 @@ module.exports = function () {
     loginAs: function (email, password) {
       this.amOnPage('https://qa1.curlywurly.me')
       loginPage.loginWith(email, password)
-      this.seeElement(homePage.menu)
+      this.seeElement(homePage.sections.menu)
     },
 
     logout: function () {
-      this.click(homePage.accountPopupToggle);
-      this.click(homePage.logoutBtn);
+      homePage.clickAccountToggle();
+      homePage.clickLogout();
     },
 
     getId: function (length = 6) {
@@ -59,8 +56,8 @@ module.exports = function () {
     },
 
     selectTenant: function (tenant){
-        homePage.openTenantList()
-        homePage.selectTenant(tenant)
+        homePage.openTenantList();
+        homePage.selectTenant(tenant);
     },
 
     goToRoles: function () {
@@ -110,17 +107,17 @@ module.exports = function () {
     },
 
     goToAllowedDomains: function () {
-      homePage.goToConfigurations();
-      this.click(allowedDomainsPage.buttons.allowedDomainsTab);
+      homePage.clickConfiguration();
+      allowedDomainsPage.clickAllowedDomainTab();
     },
 
     goToRelayEndpoints: function () {
-      homePage.goToConfigurations();
+      homePage.clickConfiguration();
       relayEndpointsPage.clickRelayEndpointTab();
     },
 
-    goToSystemSettings: function (homePage) {
-      homePage.clickConfigurations();
+    goToSystemSettings: function () {
+      homePage.clickConfiguration();
       systemSettingsPage.goToSettings();
     },
 

@@ -3,7 +3,6 @@ Feature: User Configuration
 	Background:
 		Given I am on the portal login screen
 
-
 	@TC_103208
 	Scenario: User activation email with non active user account
 		Given My user account has already been activated
@@ -28,7 +27,8 @@ Feature: User Configuration
 
 	@TC_99162
 	Scenario: Add a new user
-		Given I am logged in as required tenant and on the users screen
+		Given I am logged in as required tenant
+		And I am on the users screen
 		When I add a new user with a valid email address
 		Then The new user record is saved
 

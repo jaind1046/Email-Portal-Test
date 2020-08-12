@@ -3,7 +3,7 @@ var assert = require('assert')
 const faker = require('faker');
 
 const {I, allowedDomainsPage, homePage, env} = inject();
-
+const file = './src/data/domain_1.csv'
 
 Given('I am logged in as required tenant', () => {
   I.login();
@@ -18,11 +18,11 @@ When('I add a valid Domain and save', () => {
 });
 
 Then('The Domain is validated with a green tick', () => {
-  I.seeElement(allowedDomainsPage.validatedDomainTick)
+  I.seeElement(allowedDomainsPage.buttons.validatedDomainTick)
 });
 
 When('I Import a csv file containing a valid Allowed Domain', () => {
-  allowedDomainsPage.attachDomainRecord();
+  allowedDomainsPage.attachDomainRecord(file);
   allowedDomainsPage.clickSaveAllowedDomainsButton();
 });
 

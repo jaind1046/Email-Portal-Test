@@ -11,7 +11,7 @@ module.exports = {
   },
   buttons: {
     accountPopupToggle: `button[id='accountPopupToggle']`,
-    logoutBtn: `a[class*='log-out-button']`,
+    logout: `a[class*='log-out-button']`,
   },
   sections: {
     menu: '#mainMenu',
@@ -34,26 +34,36 @@ module.exports = {
    * ***************************************************************
    */
   async clickTransactionLog() {
-    const element = this.transactionLogLink;
+    const element = this.links.transactionLog;
     I.click(element);
   },
 
   async clickFileReleaseRequests() {
-    const element = this.fileReleaseRequestsLink;
+    const element = this.links.fileReleaseRequests;
     I.click(element);
   },
 
   async clickPolicy() {
-    const element = this.policiesLink;
+    const element = this.links.policies;
     I.click(element);
   },
 
   async clickConfiguration() {
-    const element = this.configurationLink;
+    const element = this.links.configuration;
     I.click(element);
   },
   async clickUsers() {
-    const element = this.getUsersLink();
+    const element = this.links.users;
+    I.click(element);
+  },
+
+  async clickLogout() {
+    const element = this.buttons.logout;
+    I.click(element);
+  },
+
+  async clickAccountToggle() {
+    const element = this.buttons.accountPopupToggle;
     I.click(element);
   },
 
@@ -71,7 +81,7 @@ module.exports = {
   },
 
   async selectTenant(tenant) {
-    const element = this.getTenant(tenant);
+    const element = await this.getTenant(tenant);
     I.click(element);
   },
 

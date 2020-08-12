@@ -116,17 +116,17 @@ module.exports = {
      * ***************************************************************
      */
     async clickApproveFileReleaseToggle() {
-        const element = this.checkbox.approveFileReleaseToggle;
+        const element = this.checkboxes.approveFileReleaseToggle;
         I.click(element);
     },
 
     async getViewSystemConfiguration() {
-        const element = this.checkbox.viewSystemConfiguration;
+        const element = this.checkboxes.viewSystemConfiguration;
         return await I.grabAttributeFrom(el => el.textContent, element);
     },
 
     async clickViewSystemConfiguration() {
-        const element = this.checkbox.viewSystemConfiguration;
+        const element = this.checkboxes.viewSystemConfiguration;
         I.click(element);
     },
 

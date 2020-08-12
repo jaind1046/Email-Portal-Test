@@ -14,7 +14,6 @@ const roleId = "Role"+uuid;
 
 Given('I am logged in as required tenant', () => {
     I.login();
-    I.wait(5)
     I.selectTenant(env.qa.tenantName);
 });
 

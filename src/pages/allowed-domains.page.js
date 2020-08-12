@@ -72,6 +72,11 @@ module.exports = {
         I.click(element);
     },
 
+    clickAllowedDomainTab() {
+        const element = this.buttons.allowedDomainsTab;
+        I.click(element);
+    },
+
     async getDomainOneValue() {
         const element = this.fields.domainOne;
         return await I.grabAttributeFrom(element, jsonValue());

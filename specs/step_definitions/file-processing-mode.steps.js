@@ -9,7 +9,7 @@ Given('I am logged into the portal', () => {
     throw new Error('Not implemented yet');
 });
 
-And('Analysis only mode is set to On and the CMP media type is set to hold', () => {
+When('Analysis only mode is set to On and the CMP media type is set to hold', () => {
     // From "specs\features\file-processing-mode.feature" {"line":7,"column":9}
     throw new Error('Not implemented yet');
 });
@@ -24,7 +24,7 @@ Then('the mail is received by the recipient with the file', () => {
     throw new Error('Not implemented yet');
 });
 
-And('Analysis only mode is set to off and the CMP Media Type Type is set to hold', () => {
+When('Analysis only mode is set to off and the CMP Media Type Type is set to hold', () => {
     // From "specs\features\file-processing-mode.feature" {"line":7,"column":9}
     throw new Error('Not implemented yet');
 });

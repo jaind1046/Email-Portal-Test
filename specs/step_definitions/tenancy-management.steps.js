@@ -20,7 +20,8 @@ When('I select a different tenant in the top right of the portal screen', () => 
 
 Then('The selected tenant is successfully set', () => {
     const id = env.qa.tenantId;
-    homePage.goToSettings();
+    homePage.clickConfiguration();
+    systemSettingsPage.goToSettings();
     systemSettingsPage.isTenantIdAccurate(id)
 
 });

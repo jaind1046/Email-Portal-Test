@@ -14,9 +14,6 @@ exports.config = {
       waitForAction: 2000,
       waitForTimeout: 60000
     },
-     Hooks: {
-        require: './src/utils/hooks_helper.js',
-      },
     Mochawesome: {
       uniqueScreenshotNames: "true" 
     }
@@ -56,7 +53,9 @@ exports.config = {
 },
   bootstrap: null,
   teardown: null,
-  hooks: [],
+  hooks: {
+    require: './src/utils/hooks_helper.js',
+  }, 
   gherkin: {
     features: './specs/features/*.feature',
     steps: './specs/step_definitions/*.steps.js'
@@ -65,8 +64,11 @@ exports.config = {
     screenshotOnFail: {
       enabled: true
     },
+    autoDelay: {
+      enabled: true
+    },
     retryFailedStep: {
-      enabled: false
+      enabled: true
     },
     allure: {
       enabled: true,
@@ -77,6 +79,7 @@ exports.config = {
       deleteSuccessful: false,
       screenshotsForAllureReport: false
     },
+    
     // reportportal: {
     //   enabled: true,
     //   require: '@reportportal/agent-js-codecept',

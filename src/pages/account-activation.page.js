@@ -4,6 +4,9 @@ const {
 
 module.exports = {
 
+    
+    //Locators
+
     fields: {
         email: `input[id='Email']`,
         captcha: `textarea[id='g-recaptcha-response']`,
@@ -12,6 +15,9 @@ module.exports = {
         accountActivationCancel: `button[id='accountActivationCancelButton']`,
         send: `button[class*='send-button']`,
     },
+
+
+    //Methods
 
     /*
      * EmailAddress
