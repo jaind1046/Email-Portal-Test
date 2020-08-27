@@ -33,36 +33,36 @@ module.exports = {
    * MenuLinks
    * ***************************************************************
    */
-  async clickTransactionLog() {
+  clickTransactionLog() {
     const element = this.links.transactionLog;
     I.click(element);
   },
 
-  async clickFileReleaseRequests() {
+  clickFileReleaseRequests() {
     const element = this.links.fileReleaseRequests;
     I.click(element);
   },
 
-  async clickPolicy() {
+  clickPolicy() {
     const element = this.links.policies;
     I.click(element);
   },
 
-  async clickConfiguration() {
+  clickConfiguration() {
     const element = this.links.configuration;
     I.click(element);
   },
-  async clickUsers() {
+  clickUsers() {
     const element = this.links.users;
     I.click(element);
   },
 
-  async clickLogout() {
+  clickLogout() {
     const element = this.buttons.logout;
     I.click(element);
   },
 
-  async clickAccountToggle() {
+  clickAccountToggle() {
     const element = this.buttons.accountPopupToggle;
     I.click(element);
   },
@@ -71,27 +71,27 @@ module.exports = {
    * TenantList
    * ***************************************************************
    */
-  async getTenant(tenant) {
+  getTenant(tenant) {
     return ("//button[contains(text(),'" + tenant + "')]")
 
   },
-  async openTenantList() {
+  openTenantList() {
     const element = this.lists.tenants;
     I.click(element);
   },
 
-  async selectTenant(tenant) {
-    const element = await this.getTenant(tenant);
+  selectTenant(tenant) {
+    const element = this.getTenant(tenant);
     I.click(element);
   },
 
-  async getTenantName() {
+  getTenantName() {
     I.waitForPageLoad()
     I.grabTextFrom(this.lists.tenants)
 
   },
 
-  async selectRequiredTenant(tenant) {
+  selectRequiredTenant(tenant) {
     openTenantList()
     selectTenant(tenant)
   },

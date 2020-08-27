@@ -5,7 +5,7 @@ exports.config = {
       url: 'process.env.URL' || 'https://qa1.curlywurly.me',
       email: 'process.env.QA_EMAIL',
       password: 'process.env.QA_PASSWORD',
-      show: false,
+      show: true,
       windowSize: '1536 x 826',
      chrome: {
        args: ['--no-sandbox', '--window-size=1536,826'],
@@ -53,9 +53,9 @@ exports.config = {
 },
   bootstrap: null,
   teardown: null,
-  hooks: {
-    require: './src/utils/hooks_helper.js',
-  }, 
+  hooks: [
+    
+   ], 
   gherkin: {
     features: './specs/features/*.feature',
     steps: './specs/step_definitions/*.steps.js'
@@ -72,7 +72,7 @@ exports.config = {
     },
     allure: {
       enabled: true,
-      outputDir: "output"
+      //outputDir: 'output'
     },
     stepByStepReport: {
       enabled: false,

@@ -25,37 +25,37 @@ module.exports = {
      * AddNewSenderGroup & Domain
      * ***************************************************************
      */
-    async clickAddNewSenderGroupButton() {
+    clickAddNewSenderGroupButton() {
         const element = this.buttons.addNewSenderGroup;
         I.click(element);
     },
 
-    async clickAddSenderDomainButton() {
+    clickAddSenderDomainButton() {
         const element = this.buttons.addSenderDomain;
         I.click(element);
     },
 
-    async clickAddSenderMailboxButton() {
+    clickAddSenderMailboxButton() {
         const element = this.buttons.addSenderMailBox;
         I.click(element);
     },
 
-    async clickSaveSpButton() {
+    clickSaveSpButton() {
         const element = this.buttons.saveSenderPolicy;
         I.click(element);
     },
 
-    async setSendergroupName() {
+    setSendergroupName() {
         const element = this.fields.policyOptionNameInput;
         I.fillField(element);
     },
 
-    async setDomainName() {
+    setDomainName() {
         const element = this.fields.domainNameInput;
         I.fillField(element);
     },
 
-    async setMailBox() {
+    setMailBox() {
         const element = this.fields.mailBoxInput;
         I.fillField(element);
     },
@@ -66,22 +66,22 @@ module.exports = {
      * ***************************************************************
      */
 
-    async clickDeleteSpButton() {
+    clickDeleteSpButton() {
         const element = this.buttons.deleteSenderPolicy;
         I.click(element);
     },
 
-    async clickCancelSpButton() {
+    clickCancelSpButton() {
         const element = this.buttons.cancelSenderPolicy;
         I.click(element);
     },
 
-    async clickCancelOnDeleteSenderGroupConfirm() {
+    clickCancelOnDeleteSenderGroupConfirm() {
         const element = this.buttons.deleteSenderGroupConfirmCancel;
         I.click(element);
     },
 
-    async clickSaveOnDeleteSenderGroupConfirm() {
+    clickSaveOnDeleteSenderGroupConfirm() {
         const element = this.getDeleteSenderGroupConfirmSElement();
         I.click(element);
     },

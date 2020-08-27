@@ -5,20 +5,18 @@ const faker = require('faker');
 
 const {
     I,
-    rolesPage,
-    homePage,
     usersPage,
     env
 } = inject();
 
 const uuid = faker.random.uuid();
 const userName = "User" + uuid;
-const userEmail = userName + "@gw.com";
+const newUserEmail = userName + "@gw.com";
 
 Given('I am logged in as required tenant', () => {
-  I.login();
-  I.selectTenant(env.qa.tenantName);
-  I.wait(5);
+    I.login();
+    I.selectTenant(env.qa.tenantName);
+    I.wait(5);
 });
 
 Given('I am on the users screen', () => {
@@ -26,14 +24,46 @@ Given('I am on the users screen', () => {
 });
 
 When('I add a new user with a valid email address', () => {
-    userGroup="view config";
-    usersPage.clickAddUserBtn();
-    usersPage.setNewUserName(userName);
-    usersPage.setNewUserEmail(userEmail);
-    usersPage.selectNewUserGroup(userGroup);
-    usersPage.clickSaveUsersButton();  
-    });
+    const userGroup = "view config";
+    usersPage.addUser(userName, env.qa.userEmail, userGroup);
+});
 
-Then('The new user record is saved', () => {
-    //TODO
+When('I update a user record with a new group', () => {
+    const userGroup = "Administration Group";
+    usersPage.addUser(userName, env.qa.userEmail, userGroup);
+});
+
+Then('The new user record is saved with a tick icon', () => {
+    I.seeInSource(userName);
+    I.seeElement(usersPage.getValidatedUserIcon(userName));
+});
+
+When('I add a new user with a duplicate email address', () => {
+    const userGroup = "view config";
+    usersPage.addUser(userName, env.qa.userEmail, userGroup);
+});
+
+Then('the validation error is displayed', () => {
+    //I.seeInSource(userName);
+});
+
+When('I click the delete user button next to a non admin user and save', () => {
+    I.wait(5)
+    usersPage.clickDeleteUserRecord(userName);
+    usersPage.clickSaveUsersButton();
+    usersPage.clickUserModalSaveButton();
+});
+
+Then('The user record no longer exist', () => {
+    I.dontSeeInSource(userName);
+});
+
+When('I add a new user with a non existing email address', () => {
+    const userGroup = "view config";
+    usersPage.addUser(userName, newUserEmail, userGroup);
+});
+
+Then('the record is saved with a warning icon', () => {
+    I.seeElement(locate(usersPage.getUserRecord(newUserEmail)).find(usersPage.buttons.nonValidatedUser));
+
 });

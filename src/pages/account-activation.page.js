@@ -23,7 +23,7 @@ module.exports = {
      * EmailAddress
      * ***************************************************************
      */
-    async setEmailAddress(value) {
+    setEmailAddress(value) {
         const element = locate(this.fields.email);
         I.fillField(element, value);
     },
@@ -36,7 +36,7 @@ module.exports = {
         const element = locate(this.fields.captcha);
         return await I.grabAttributeFrom(element, jsonValue());
     },
-    async setGrecaptcharesponse(value) {
+    setGrecaptcharesponse(value) {
         const element = locate(this.fields.captcha);
         I.fillField(element, value);
     },
@@ -45,7 +45,7 @@ module.exports = {
      * AccountActivationCancelBtn
      * ***************************************************************
      */
-    async clickAccountActivationCancelBtn() {
+    clickAccountActivationCancelBtn() {
         const element = locate(this.buttons.fieldsaccountActivationCancel);
         I.click(element);
     },
@@ -54,7 +54,7 @@ module.exports = {
      * SendLink
      * ***************************************************************
      */
-    async clickSendLink() {
+    clickSendLink() {
         const element = locate(this.buttons.send);
         I.click(element);
     },

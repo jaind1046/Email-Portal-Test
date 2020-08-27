@@ -21,27 +21,26 @@ module.exports = {
 
     //Methods
 
-
     /*
      * AddingNewReceiverGroup
      * ***************************************************************
      */
-    async clickAddNewReceiverGroupButton() {
+    clickAddNewReceiverGroupButton() {
         const element = this.buttons.addNewReceiverGroup;
         I.click(element);
     },
 
-    async clickAddReceiverMailboxButton() {
+    clickAddReceiverMailboxButton() {
         const element = this.buttons.addReceiverMailbox;
         I.click(element);
     },
 
-    async clickCancelRpButton() {
+    clickCancelRpButton() {
         const element = this.buttons.canceReveiverPolicy;
         I.click(element);
     },
 
-    async clickSaveRpButton() {
+    clickSaveRpButton() {
         const element = this.buttons.saveReveiverPolicy;
         I.click(element);
     },
@@ -50,26 +49,26 @@ module.exports = {
      * Deleting Policy & Mail Box
      * ***************************************************************
      */
-    async clickDeleteRpButton() {
+    clickDeleteRpButton() {
         const element = this.buttons.deleteReveiverPolicy;
         I.click(element);
     },
 
-    async clickDeleteReceiverGroupConfirmCancel() {
+    clickDeleteReceiverGroupConfirmCancel() {
         const element = this.buttons.deleteReceiverGroupConfirmSave;
         I.click(element);
     },
 
-    async clickDeleteReceiverGroupConfirmSave() {
+    clickDeleteReceiverGroupConfirmSave() {
         const element = this.buttons.deleteReceiverGroupConfirmSave;
         I.click(element);
     },
-    async clickDeleteMailBoxButton() {
+    clickDeleteMailBoxButton() {
         const element = this.buttons.deleteExistingMailBoxRecord;
         I.click(element);
     },
 
-    async clickCancelMailBoxButton() {
+    clickCancelMailBoxButton() {
         const element = this.buttons.deleteNewMailBoxRecord;
         I.click(element);
     },

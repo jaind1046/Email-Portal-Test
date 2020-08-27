@@ -14,7 +14,7 @@ Feature: TransactionIdInsertionToMailHeader.feature
 
 	@TC_103151
 	Scenario:Send Mail with configuration ID in header set to off
-		And The Insert Transaction ID into mail headers is set to Off	
+		Given The Insert Transaction ID into mail headers is set to Off	
 		When I send a mail through with or without an attachment 
 		And I open the processed mail	
 		Then There is no transaction ID in the header of the processed email

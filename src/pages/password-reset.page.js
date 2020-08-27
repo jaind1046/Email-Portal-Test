@@ -23,27 +23,27 @@ module.exports = {
      * PasswordRequestSetting
      * ***************************************************************
      */
-    async setEmailAddress(value) {
+    setEmailAddress(value) {
         const element = this.fields.email;
         I.fillField(element, value);
     },
 
-    async getGrecaptcharesponse() {
+   async getGrecaptcharesponse() {
         const element = this.fields.recaptchaResponse;
         return await I.grabAttributeFrom(element, jsonValue());
     },
 
-    async setGrecaptcharesponse(value) {
+    setGrecaptcharesponse(value) {
         const element = this.fields.recaptchaResponse;
         I.fillField(element, value);
     },
 
-    async clickForgotPasswordCancelButton() {
+    clickForgotPasswordCancelButton() {
         const element = this.buttons.cancel;
         I.click(element);
     },
 
-    async clickSendLink() {
+    clickSendLink() {
         const element = this.buttons.sendLink;
         I.click(element);
     },
@@ -53,6 +53,7 @@ module.exports = {
         I.click(this.fields.captchaBox);
         I.click(this.fields.sendLink);
     },
+    
     /*
      * RequestVerificationToken
      * ***************************************************************
@@ -62,7 +63,7 @@ module.exports = {
         return await I.grabAttributeFrom(element, jsonValue());
     },
 
-    async setRequestVerificationToken(value) {
+    setRequestVerificationToken(value) {
         const element = this.fields.requestVerificationToken;
         I.fillField(element, value);
     }

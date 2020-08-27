@@ -39,27 +39,27 @@ module.exports = {
    * ***************************************************************
    */
 
-  async clickPolicyTabPrevious() {
+  clickPolicyTabPrevious() {
     const element = this.buttons.policyTabPrevious;
     I.click(element);
   },
 
-  async clickPreviousProcessingRules() {
+  clickPreviousProcessingRules() {
     const element = this.buttons.processingRulesTabPrevious;
     I.click(element);
   },
 
-  async clickPreviousSenderGroups() {
+  clickPreviousSenderGroups() {
     const element = this.buttons.senderGroupsTabPrevious;
     I.click(element);
   },
 
-  async clickPreviousReceiverGroups() {
+  clickPreviousReceiverGroups() {
     const element = this.buttons.receiverGroupsTabPrevious;
     I.click(element);
   },
 
-  async clickPreviousContentManagementPolicies() {
+  clickPreviousContentManagementPolicies() {
     const element = this.buttons.cmpTabPrevious;
     I.click(element);
   },
@@ -68,22 +68,22 @@ module.exports = {
    * PolicyTabsCurrent
    * ***************************************************************
    */
-  async clickPolicyTabCurrent() {
+  clickPolicyTabCurrent() {
     const element = this.buttons.currentTab;
     I.click(element);
   },
 
-  async clickCurrentSenderGroups() {
+  clickCurrentSenderGroups() {
     const element = this.buttons.senderGroupsTabCurrent;
     I.click(element);
   },
 
-  async clickCurrentReceiverGroups() {
+  clickCurrentReceiverGroups() {
     const element = this.buttons.receiverGroupsTabCurrent;
     I.click(element);
   },
 
-  async clickCurrentContentManagementPolicies() {
+  clickCurrentContentManagementPolicies() {
     const element = this.buttons.cmpTabCurrent;
     I.click(element);
   },
@@ -92,32 +92,32 @@ module.exports = {
    * PolicyTabsDraft
    * ***************************************************************
    */
-  async clickDraftPolicyTab() {
+  clickDraftPolicyTab() {
     const element = this.buttons.policyTabDraft;
     I.click(element);
   },
 
-  async clickDraftProcessingRules() {
+  clickDraftProcessingRules() {
     const element = this.buttons.processingRulesTabDraft;
     I.click(element);
   },
 
-  async clickDraftSenderGroups() {
+  clickDraftSenderGroups() {
     const element = this.buttons.senderGroupsTabDraft;
     I.click(element);
   },
 
-  async clickDraftReceiverGroups() {
+  clickDraftReceiverGroups() {
     const element = this.getDraftReceiverGroupsElement();
     I.click(element);
   },
 
-  async clickDraftContentManagementPolicies() {
+  clickDraftContentManagementPolicies() {
     const element = this.getDraftContentManagementPoliciesElement();
     I.click(element);
   },
 
-  async clickPublishDraftPolicy() {
+  clickPublishDraftPolicy() {
     const element = this.getPublishDraftPolicyElement();
     I.click(element);
   }

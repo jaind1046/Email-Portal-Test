@@ -39,7 +39,7 @@ module.exports = {
      * RolesTab
      * ***************************************************************
      */
-    async clickRolesTab() {
+    clickRolesTab() {
         const element = this.buttons.rolesTab;
         I.click(element);
     },
@@ -48,7 +48,7 @@ module.exports = {
      * AddingRoles
      * ***************************************************************
      */
-    async clickAddBtn() {
+    clickAddBtn() {
         const element = this.buttons.addRole;
         I.click(element);
     },
@@ -58,21 +58,21 @@ module.exports = {
         return await locate(element).find('li');
     },
 
-    async isRoleLinkDisplayed(role) {
+    isRoleLinkDisplayed(role) {
         return I.seeElement("//button[contains(., '" + role + "')]")[0];
     },
 
-    async selectRole(role) {
+    selectRole(role) {
         const element = "//button[contains(., '" + role + "')]"
         I.click(element)[0]
     },
 
-    async clickDelete() {
+    clickDelete() {
         const element = this.buttons.roleDeleteIcon;
         I.click(element)[0];
     },
 
-    async clickRole(role) {
+    clickRole(role) {
         const element = this.getRoleElement(role);
         I.click(element);
     },
@@ -81,12 +81,12 @@ module.exports = {
         const element = this.fields.displayNameInput;
         return await I.grabValueFrom(element);
     },
-    async setRoleDisplayName(value) {
+    setRoleDisplayName(value) {
         const element = this.fields.displayNameInput;
         I.fillField(element, value);
     },
 
-    async clickSaveRoleButton() {
+    clickSaveRoleButton() {
         const element = this.buttons.saveRole;
         I.click(element);
     },
@@ -96,17 +96,17 @@ module.exports = {
      * Cancel & Deleting Role
      * ***************************************************************
      */
-    async clickCancelRoleEdit() {
+    clickCancelRoleEdit() {
         const element = this.buttons.cancelRoleEdit;
         I.click(element);
     },
 
-    async clickDeleteRoleConfirmCancel() {
+    clickDeleteRoleConfirmCancel() {
         const element = this.buttons.deleteRoleConfirmCancel;
         I.click(element);
     },
 
-    async clickDeleteRoleConfirmSave() {
+    clickDeleteRoleConfirmSave() {
         const element = this.buttons.deleteRoleConfirmSave
         I.click(element);
     },
@@ -115,7 +115,7 @@ module.exports = {
      * Role Permissions
      * ***************************************************************
      */
-    async clickApproveFileReleaseToggle() {
+    clickApproveFileReleaseToggle() {
         const element = this.checkboxes.approveFileReleaseToggle;
         I.click(element);
     },
@@ -125,7 +125,7 @@ module.exports = {
         return await I.grabAttributeFrom(el => el.textContent, element);
     },
 
-    async clickViewSystemConfiguration() {
+    clickViewSystemConfiguration() {
         const element = this.checkboxes.viewSystemConfiguration;
         I.click(element);
     },

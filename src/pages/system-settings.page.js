@@ -24,7 +24,7 @@ module.exports = {
 
     //Methods
     
-    async goToSettings() {
+    goToSettings() {
         const element = this.buttons.systemSettingsTab;
         I.click(element);
     },
@@ -33,12 +33,12 @@ module.exports = {
      * TenantId
      * ***************************************************************
      */
-    async clickCopy() {
+    clickCopy() {
         const element = this.buttons.copy;
         I.click(element);
     },
 
-    async isTenantIdAccurate(id) {
+    isTenantIdAccurate(id) {
         const element = this.fields.tenantIdBox;
         I.see(id, element);
     },
@@ -52,7 +52,7 @@ module.exports = {
         return await I.grabAttributeFrom(element, jsonValue());
     },
 
-    async setMaximumFileSizeInMegabyte(value) {
+    setMaximumFileSizeInMegabyte(value) {
         const element = this.fields.maximumFileSizeInMegabytesInput;
         I.fillField(element, value);
     },
@@ -66,7 +66,7 @@ module.exports = {
         return await (await element.getProperty('checked')).jsonValue();
     },
 
-    async setInsertTransactionHeader(on) {
+    setInsertTransactionHeader(on) {
         const val = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
         if (!on && val) {
             const element = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
@@ -74,7 +74,7 @@ module.exports = {
         }
     },
 
-    async setInsertTransactionHeader(Off) {
+    setInsertTransactionHeader(Off) {
         const val = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
         if (!off && val) {
             const element = this.checkboxes.insertTransactionIDIntoMailHeadersToggle;
@@ -91,7 +91,7 @@ module.exports = {
         return await I.grabAttributeFrom(element, jsonValue());
     },
 
-    async setHeldDuration(value) {
+    setHeldDuration(value) {
         const element = this.fields.heldDurationInput;
         I.fillField(element, value);
     },
@@ -105,7 +105,7 @@ module.exports = {
         return await I.grabAttributeFrom(element, jsonValue());
     },
 
-    async setSuccessDuration(value) {
+    setSuccessDuration(value) {
         const element = this.fields.successDurationInput;
         I.fillField(element, value);
     },
@@ -118,7 +118,7 @@ module.exports = {
         return await (await element.getProperty('checked')).jsonValue();
     },
 
-    async setInsertTransactionHeader(on) {
+    setInsertTransactionHeader(on) {
         const val = this.checkboxes.analysisOnlyModeToggle;
         if (!on && val) {
             const element = this.checkboxes.analysisOnlyModeToggle;
@@ -126,7 +126,7 @@ module.exports = {
         }
     },
 
-    async setInsertTransactionHeader(Off) {
+    setInsertTransactionHeader(Off) {
         const val = this.checkboxes.analysisOnlyModeToggle;
         if (!off && val) {
             const element = this.checkboxes.analysisOnlyModeToggle;

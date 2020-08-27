@@ -15,9 +15,3 @@ Feature: Successful Login
     Given I am on the login page
     When I enter valid username & invalid password
     Then The error shows Incorrect username or password, please try again is displayed
-
-  @TC_99111
-  Scenario: User login with expired password
-    Given I am on the login page
-    When I enter valid username & expired password
-    Then The error shows Incorrect username or password, please try again is displayed

@@ -31,12 +31,12 @@ module.exports = {
      * AddingRelayEndpoints
      * ***************************************************************
      */
-    async clickRelayEndpointTab() {
+    clickRelayEndpointTab() {
         const element = this.buttons.relayEndpointTab;
         I.click(element);
     },
 
-    async clickImportRelayEndpoints() {
+    clickImportRelayEndpoints() {
         const element = this.buttons.importRelayEndpoints;
         I.click(element);
     },
@@ -46,22 +46,22 @@ module.exports = {
         return await I.grabAttributeFrom(element, jsonValue());
     },
 
-    async setRelayEndpointInput(value) {
+    setRelayEndpointInput(value) {
         const element = this.fields.relayEndpointInput;
         I.fillField(element, value);
     },
 
-    async clickAddEndpointBtn() {
+    clickAddEndpointBtn() {
         const element = this.buttons.addRelayEndpoint;
         I.click(element);
     },
 
-    async setPort0(value) {
+    setPort0(value) {
         const element = this.fields.relayPort;
         I.fillField(element, value);
     },
 
-    async clickSaveRelayEndpointsBtn() {
+    clickSaveRelayEndpointsBtn() {
         const element = this.buttons.saveRelayEndpoints;
         I.click(element);
     },
@@ -70,12 +70,12 @@ module.exports = {
      * DeleteBtn
      * ***************************************************************
      */
-    async clickDeleteBtn() {
+    clickDeleteBtn() {
         const element = this.buttons.deleteEndpoint;
         I.click(element);
     },
 
-    async clickCancelSaveEndpointsBtn() {
+    clickCancelSaveEndpointsBtn() {
         const element = this.buttons.cancelEndpoint;
         I.click(element);
     },

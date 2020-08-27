@@ -43,7 +43,7 @@ module.exports = {
  * Release Request Table
  * ***************************************************************
  */
-async getPendingReleaseCount() {
+getPendingReleaseCount() {
     const element = this.buttons.pendingFileReleaseCount
     I.grabTextFrom(element)
 },
@@ -52,27 +52,27 @@ async getPendingReleaseCount() {
  * PageNavigation
  * ***************************************************************
  */
-async clickFirstPage() {
+clickFirstPage() {
     const element = this.buttons.firstPage;
     I.click(element);
 },
 
-async clickLastPage() {
+clickLastPage() {
     const element = this.buttons.lastPage;
      I.click(element);
 },
 
-async clickPreviousPage() {
+clickPreviousPage() {
     const element = this.buttons.previousPage;
      I.click(element);
 },
 
-async clickNextPage() {
+clickNextPage() {
     const element = this.buttons.nextPage;
      I.click(element);
 },
 
-async goToCustomPage(pageNbr) {
+goToCustomPage(pageNbr) {
     const element = this.fields.customPaginatorGoTo;
     I.fillField(element, pageNbr);
     I.click(this.buttons.go);
@@ -82,27 +82,27 @@ async goToCustomPage(pageNbr) {
  * File Release Modal Content
  * ***************************************************************
  */
-async getHeaderContent() {
+getHeaderContent() {
     const element = this.sections.modalHeader;
     I.grabTextFrom(element);
 },
 
-async getFileDetailsHeaderContent() {
+getFileDetailsHeaderContent() {
     const element = this.sections.modalHeader;
     I.grabTextFrom(element);
 },
 
-async getFileHistoryContent() {
+getFileHistoryContent() {
     const element = this.sections.fileHistory;
     I.grabTextFrom(element);
 },
 
-async closeFileDetailModal() {
+closeFileDetailModal() {
     const element = this.buttons.modalClose;
     I.click(element);
 },
 
-async clickOkOnFileDetailModal() {
+clickOkOnFileDetailModal() {
     const element = this.buttons.closeFileReleaseRequest;
     I.click(element);
 },
@@ -110,17 +110,17 @@ async clickOkOnFileDetailModal() {
  * File Release Approval
  * ***************************************************************
  */
-async clickApprove() {
+clickApprove() {
     const element = this.buttons.approve;
     I.click(element);
 },
 
-async clickDeny() {
+clickDeny() {
     const element = this.buttons.deny;
     I.click(element);
 },
 
-async clickDeny() {
+clickDeny() {
     const element = this.buttons.deny;
     I.click(element);
 },

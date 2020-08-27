@@ -55,7 +55,7 @@ module.exports = {
     return await I.grabAttributeFrom(element, jsonValue());
   },
 
-  async setDatetimepicker(value) {
+  setDatetimepicker(value) {
     const element = this.calendar.dateTimePicker;
     I.fillField(element, value);
   },
@@ -64,33 +64,33 @@ module.exports = {
    * AddingFilter
    * ***************************************************************
    */
-  async clickAddFilterButton() {
+  clickAddFilterButton() {
     const element = this.buttons.addFilter;
     I.click(element);
   },
 
-  async clickFrom() {
+  clickFrom() {
     const element = this.popups.filterFrom;
     I.click(element);
   },
 
-  async clickTo() {
+  clickTo() {
     const element = this.popups.filterTo;
     I.click(element);
   },
 
 
-  async clickTransactionId() {
+  clickTransactionId() {
     const element = this.popups.filterTransactionId;
     I.click(element);
   },
 
-  async clickSubject() {
+  clickSubject() {
     const element = this.popups.filterSubject;
     I.click(element);
   },
 
-  async clickFileName() {
+  clickFileName() {
     const element = this.popups.filterFileName;
     I.click(element);
   },
@@ -105,12 +105,12 @@ module.exports = {
     return await I.grabAttributeFrom(element, jsonValue());
   },
 
-  async setSendersEmailAddress(value) {
+  setSendersEmailAddress(value) {
     const element = this.fields.senderInput;
     I.fillField(element, value);
   },
 
-  async clickAddSender() {
+  clickAddSender() {
     const element = this.buttons.addSender;
     I.click(element);
   },
@@ -120,17 +120,17 @@ module.exports = {
    * ***************************************************************
    */
 
-  async getRecipientsEmailAddress() {
+ async getRecipientsEmailAddress() {
     const element = this.fields.inputFilterRecipient;
     return await I.grabAttributeFrom(element, jsonValue());
   },
 
-  async setRecipientsEmailAddress(value) {
+  setRecipientsEmailAddress(value) {
     const element = this.fields.inputFilterRecipient;
     I.fillField(element, value);
   },
 
-  async clickAddRecipient() {
+  clickAddRecipient() {
     const element = this.buttons.addReceiver;
     I.click(element);
   },
@@ -139,12 +139,12 @@ module.exports = {
    * FileOutcome
    * ***************************************************************
    */
-  async clickFileOutcomes() {
+  clickFileOutcomes() {
     const element = this.popups.filterFileOutcomes;
     I.click(element);
   },
 
-  async clickApplyOutcome() {
+  clickApplyOutcome() {
     const element = this.buttons.outcomeApply;
     I.click(element);
   },
@@ -153,12 +153,12 @@ module.exports = {
    * TransactionId
    * ***************************************************************
    */
-  async setTransactionId(value) {
+  setTransactionId(value) {
     const element = this.fields.inputFilterTransactionID;
     I.fillField(element, value);
   },
 
-  async clickAddTransactionid() {
+  clickAddTransactionid() {
     const element = this.buttons.addtransactionId;
     I.click(element);
   },
@@ -172,12 +172,12 @@ module.exports = {
     return await I.grabAttributeFrom(element, jsonValue());
   },
 
-  async setEmailSubject(value) {
+  setEmailSubject(value) {
     const element = this.fields.inputFilterSubject;
     I.fillField(element, value);
   },
 
-  async clickAddSubject() {
+  clickAddSubject() {
     const element = this.buttons.addSubject;
     I.click(element);
   },
@@ -191,12 +191,12 @@ module.exports = {
     return await I.grabAttributeFrom(element, jsonValue());
   },
 
-  async setFileName(value) {
+  setFileName(value) {
     const element = this.fields.inputFilterFilename;
     I.fillField(element, value);
   },
 
-  async clickAddFilename() {
+  clickAddFilename() {
     const element = this.buttons.addFileName;
     I.click(element);
   },
@@ -205,32 +205,32 @@ module.exports = {
    * Pagination
    * ***************************************************************
    */
-  async clickFirst() {
+  clickFirst() {
     const element = this.buttons.firstPage;
     I.click(element);
   },
 
-  async clickPrevious() {
+  clickPrevious() {
     const element = this.buttons.previousPage;
     I.click(element);
   },
 
-  async clickLast() {
+  clickLast() {
     const element = this.buttons.lastPage;
     I.click(element);
   },
 
-  async clickPrevious() {
+  clickPrevious() {
     const element = this.buttons.nextPage;
     I.click(element);
   },
 
-  async setCustomPage(value) {
+  setCustomPage(value) {
     const element = this.fields.customPaginatorGoTo;
     I.fillField(element, value);
   },
 
-  async clickGo() {
+  clickGo() {
     const element = this.buttons.go;
     I.click(element);
   },

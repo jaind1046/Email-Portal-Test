@@ -37,12 +37,12 @@ module.exports = {
      * AddingProcessingRule
      * ***************************************************************
      */
-    async clickAddProcessingRuleButton() {
+    clickAddProcessingRuleButton() {
         const element = this.buttons.addProcessingRule;
         I.click(element);
     },
 
-    async addProcessingRule(sender, receiver, cmp) {
+   async addProcessingRule(sender, receiver, cmp) {
         await this.clickAddPrBtn();
         this.setSendersByText(sender)
         this.setReceiversByText(receiver)
@@ -50,7 +50,7 @@ module.exports = {
         this.clickSavePrButton();
     },
 
-    async editPrRule(oldSender, newSender, receiver, cmp) {
+    editPrRule(oldSender, newSender, receiver, cmp) {
         this.setSenderByText(this.getSenderElement(oldSender), newSender)
         this.setReceiversByText(receiver)
         this.setDefaultContentManagementPByText(cmp)
@@ -63,22 +63,22 @@ module.exports = {
      * ***************************************************************
      */
 
-    async clickDeleteProcessingRuleButton() {
+    clickDeleteProcessingRuleButton() {
         const element = this.buttons.deleteProcessingRule;
         I.click(element);
     },
 
-    async clickCancelPrButton() {
+    clickCancelPrButton() {
         const element = this.buttons.cancelProcessingRule;
         I.click(element);
     },
 
-    async clickSavePrButton() {
+    clickSavePrButton() {
         const element = this.buttons.savePRButton;
         I.click(element);
     },
 
-    async clickCancelPrDeleteConfirm() {
+    clickCancelPrDeleteConfirm() {
         const element = this.buttons.cancelPRDeleteConfirm;
         I.click(element);
     },
@@ -87,12 +87,12 @@ module.exports = {
      * Modal
      * ***************************************************************
      */
-    async clickPrModalSaveButton() {
+    clickPrModalSaveButton() {
         const element = this.buttons.prModalSaveButton;
         I.click(element);
     },
 
-    async clickPrDeleteModalClose() {
+    clickPrDeleteModalClose() {
         const element = this.buttons.prDeleteModalClose;
         I.click(element);
     },

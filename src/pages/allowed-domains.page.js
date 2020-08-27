@@ -51,15 +51,15 @@ module.exports = {
         I.click(element);
     },
 
-    async attachDomainRecord(file) {
-        await this.clickImportAllowedDomains();
-        I.attachFile(await this.fields.allowedDomainsInput, file);
+    attachDomainRecord(file) {
+       this.clickImportAllowedDomains();
+        I.attachFile(this.fields.allowedDomainsInput, file);
     },
 
-    async uploadCsv(file) {
-        await this.clickImportAllowedDomains();
+    uploadCsv(file) {
+        this.clickImportAllowedDomains();
         I.attachFile(this.fields.allowedDomainsInput, file);
-        I.click(await this.buttons.saveAllowedDomains)
+        I.click(this.buttons.saveAllowedDomains)
     },
 
     /*
@@ -105,12 +105,12 @@ module.exports = {
      * Deleting a domain
      * ***************************************************************
      */
-    async clickDelete() {
+    clickDelete() {
         const element = this.buttons.delete;
         I.click(element);
     },
 
-    async clickRevert() {
+    clickRevert() {
         const element = this.buttons.revertDelete;
         I.click(element);
     },
@@ -119,17 +119,17 @@ module.exports = {
      * ConfigModal
      * ***************************************************************
      */
-    async clickConfigModalSaveButton() {
+    clickConfigModalSaveButton() {
         const element = this.buttons.configModalSaveButton;
         I.click(element);
     },
 
-    async clickCancelConfigDeleteConfirm() {
+    clickCancelConfigDeleteConfirm() {
         const element = this.buttons.cancelConfigDeleteConfirm;
         I.click(element);
     },
 
-    async clickConfigurationDeleteModalClose() {
+    clickConfigurationDeleteModalClose() {
         const element = this.buttons.configurationDeleteModalClose;
         I.click(element);
     },

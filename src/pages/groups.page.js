@@ -33,7 +33,7 @@ module.exports = {
      * GroupsTab
      * ***************************************************************
      */
-    async clickGroupsTab() {
+    clickGroupsTab() {
         const element = this.buttons.groupsTab;
         I.click(element);
     },
@@ -48,7 +48,7 @@ module.exports = {
         return await I.grabValueFrom(element)
     },
 
-    async setGroupListByValue(value) {
+    setGroupListByValue(value) {
         const element = this.lists.groups;
         I.selectOption(element, value)
     },
@@ -57,33 +57,33 @@ module.exports = {
      * AddingSavingGroups
      * ***************************************************************
      */
-    async clickCancelSaveGroupButton() {
+    clickCancelSaveGroupButton() {
         const element = this.buttons.cancelSaveGroup;
         I.click(element);
     },
 
-    async clickSaveGroupButton() {
+    clickSaveGroupButton() {
         const element = this.buttons.saveGroup;
         I.click(element);
     },
 
-    async setNewGroupName(groupName) {
+    setNewGroupName(groupName) {
         const element = this.fields.newGroupNameField;
         I.fillField(element, groupName);
     },
 
-    async selectNewUserGroup(role) {
+    selectNewUserGroup(role) {
         const element = locate(this.lists.newRoleDropDown);
         I.click(element)
         I.click("//li[contains(., '" + role + "')]");
     },
 
-    async clickAddGroupButton() {
+    clickAddGroupButton() {
         const element = this.buttons.addGroup;
         I.click(element);
     },
 
-    async clickDeleteGroupButton() {
+    clickDeleteGroupButton() {
         const element = this.buttons.groupDelete;
         I.click(element);
     },
