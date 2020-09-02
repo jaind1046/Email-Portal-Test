@@ -21,6 +21,7 @@ exports.config = {
   include: {
     I: './specs/step_definitions/steps_file.js',
     env: './credentials.js',
+    data: './src/data/user-data.js',
     homePage: './src/pages/home.page.js',
     loginPage: './src/pages/login.page.js',
     userActivationPage: './src/pages/account-activation.page.js',
