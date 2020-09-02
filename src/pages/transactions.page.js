@@ -69,6 +69,11 @@ module.exports = {
     I.click(element);
   },
 
+  clickDatePicker() {
+    const element = this.calendar.dateTimePicker;
+    I.click(element);
+  },
+
   clickFrom() {
     const element = this.popups.filterFrom;
     I.click(element);
@@ -163,6 +168,10 @@ module.exports = {
     I.click(element);
   },
 
+  async getTransactionId() {
+    const element = this.fields.inputFilterTransactionID;
+    return await I.grabAttributeFrom(element, jsonValue());
+  },
   /*
    * EmailSubject
    * ***************************************************************
@@ -220,7 +229,7 @@ module.exports = {
     I.click(element);
   },
 
-  clickPrevious() {
+  clickNext() {
     const element = this.buttons.nextPage;
     I.click(element);
   },
