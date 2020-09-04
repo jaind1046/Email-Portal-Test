@@ -30,7 +30,6 @@ module.exports = {
   },
   calendar: {
     dateTimePicker: `input[class*='date-time-picker']`,
-
   },
   popups: {
     filterFrom: `div[id='filterMenuPopup'] > ul > li:nth-of-type(1) > button`,
