@@ -17,7 +17,7 @@ class TestHelpers {
         today.setHours(hh, mm, ss);
         // e.g 8/29/2020 00:00:00 am
         today = dateFormat(today, "m/d/yyyy hh:MM:ss TT");
-        result today;
+        return today;
     }
 
     /**************************************************************
