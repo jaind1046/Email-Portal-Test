@@ -1,6 +1,6 @@
 ///<reference path="./steps.d.ts" />
-var {assert,assertNull}     = require('assert')
-var dateFormat              = require('dateformat');
+var     {assert,assertNull}         = require('assert')
+const   {TestHelpers}               = require('./helpers/step_helpers')
 
 const {
     I,
@@ -15,6 +15,8 @@ const transactionId         = env.qa.senderEmailId
 const subject               = env.qa.emailSubject
 const fileName              = env.qa.fileName
 const gotoCustomPage        = env.qa.gotoCustomPage
+
+const testHelpers           = new TestHelpers()
 
 /*****************************************
 * Navigation
@@ -44,21 +46,21 @@ When('I add a filter', () => {
 When('I set transaction date to a valid value', () => {
     transactionsPage.clickDatePicker()
     // We will set the current data 00:00 hours by default to  date, though this could be parametrized
-    var today = getToday(0,0,0)
-    today = today + " - "+getToday(23,59,59)
+    var today = testHelpers.getToday(0,0,0)
+    today = today + " - "+ testHelpers.getToday(23,59,59)
     transactionsPage.setDatetimepicker(today)
 });
 
 Then('The transaction date is set', () => {
     var datePickerTime = transactionsPage.getDatetimepicker()
-    var today = getToday(0,0,0)
-    today = today + " - "+getToday(23,59,59)
+    var today = testHelpers.getToday(0,0,0)
+    today = today + " - "+ testHelpers.getToday(23,59,59)
     assertEquals(today, datePickerTime, "Transaction log from date mismatched")
 });
 
 When('I set transaction date to invalid date', () => {
     transactionsPage.clickDatePicker()
-    var invalidDate = getInvalidDate()
+    var invalidDate = testHelpers.getInvalidDate()
     transactionsPage.setDatetimepicker(invalidDate)
 });
 
@@ -175,7 +177,7 @@ When('I set transaction-id to an invalid value', () => {
     transactionsPage.clickTransactionId()
     // Add transaction-id
     transactionsPage.clickAddTransactionid()
-    transactionsPage.setTransactionId(getRandomChars(500))
+    transactionsPage.setTransactionId(testHelpers.getRandomChars(500))
 });
 
 When('I unset transaction-id', () => {
@@ -215,7 +217,7 @@ When('I set subject to an extra ordinarily large value', () => {
     transactionsPage.clickSubject()
     // Add subject
     transactionsPage.clickAddSubject()
-    transactionsPage.setEmailSubject(getRandomString(999999))
+    transactionsPage.setEmailSubject(testHelpers.getRandomString(999999))
 });
 
 When('I unset subject', () => {
@@ -256,7 +258,7 @@ When('I set file name to an invalid value', () => {
     transactionsPage.clickFileName()
     // Add filename
     transactionsPage.clickAddFilename()
-    transactionsPage.setFileName(getInvalidFileName(100))
+    transactionsPage.setFileName(testHelpers.getInvalidFileName(100))
 });
 
 When('I unset file name', () => {
@@ -360,48 +362,3 @@ Then('I am on the custom page', () => {
     // e.g.
     //I.seeInField('pageElement[pager]',custompageNumber);
 });
-
-/*******************************************************
-* Utility functions. Ideally should go in utils file
-********************************************************/
-
-function getToday(hh,mm,ss){
-    var today = new Date();
-    today.setHours(hh, mm, ss);
-    // e.g 8/29/2020 00:00:00 am
-    today = dateFormat(today, "m/d/yyyy hh:MM:ss TT");
-}
-
-function getInvalidDate(){
-    return "13/45/5555 50:49:99 CM"
-}
-
-function getRandomString(length){
-   var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
-
-function getRandomChars(length){
-   var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()?><|\?/~`';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
-
-function getInvalidFileName(length){
-   var result           = '';
-   var characters       = '!@#$%)(*&<>.,?/"';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
