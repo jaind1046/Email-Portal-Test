@@ -2,36 +2,31 @@
 Feature: Password reset
 
 
-    @TC_99161
-    Scenario: Change Password in user admin
+    @TC_Reset_Password_99161
+    Scenario: Change Password successfully
         Given I am logged into the portal and clicked on Change Password
         When I enter my current password and new password and Click Save
-        Then A success notification is displayed
+        Then The password is reset successfully
 
-    @TC_108027
-    Scenario: Go to password reset page
-        Given I am on the login page
-        When I click Forgotten Password
-        Then The password reset page is displayed
+    @TC_Reset_Password_99162
+    Scenario: Change Password with different confirmed password
+        Given I am logged into the portal and clicked on Change Password
+        When I enter the valid new password
+        When I enter a different confirm password
+        Then I see a passwords dont match error
 
+    @TC_Reset_Password_99163
+    Scenario: Change Password with weak password
+        Given I am logged into the portal and clicked on Change Password
+        When I enter the valid new password
+        When I enter the valid confirm password
+        When I enter a weak new password
+        Then I see a weak password error
 
-    @TC_99113
-    Scenario: Successful password reset
-        Given I click Forgotten Password, enter details and click send link with the captcha validation 
-        When I open the mail and click the password reset link 
-        And enter new password and submit
-        Then The password is successfully reset
-
-    @TC_99114
-    Scenario: Password reset with invalid details
-        Given I am on the password reset page
-        When I enter email address & click send link without captcha validation
-        Then the validation error is displayed and the mail not received
-
-    @TC_99109
-    Scenario: User login with a newly reset password
-        Given My password is reset
-        And I enter a valid email and a newly reset password and click login
-        Then The home page is displayed
-
-
+    @TC_Reset_Password_991634
+    Scenario: Change Password with weak password and different confirm password
+        Given I am logged into the portal and clicked on Change Password
+        When I enter a weak new password
+        When I enter the valid confirm password
+        When I enter a different confirm password
+        Then I see weak password and passwords dont match error

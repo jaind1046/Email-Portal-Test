@@ -7,15 +7,19 @@ module.exports = {
     //Locators
 
     fields: {
-        forgotPasswordFields: '#forgotPasswordForm',
-        captchaBox: '#rc-anchor-container > div.rc-anchor-content > div:nth-child(1) > div > div',
-        recaptchaResponse: `textarea[id='g-recaptcha-response']`,
-        email: `input[id='Email']`,
-        requestVerificationToken: `input[name='__RequestVerificationToken']`
+        forgotPasswordFields        : '#forgotPasswordForm',
+        captchaBox                  : '#rc-anchor-container > div.rc-anchor-content > div:nth-child(1) > div > div',
+        recaptchaResponse           : `textarea[id='g-recaptcha-response']`,
+        email                       : `input[id='Email']`,
+        requestVerificationToken    : `input[name='__RequestVerificationToken']`,
+        currentPassword             : `input[name='CurrentPassword']`,
+        newPassword                 : `input[name='NewPassword']`,
+        confirmNewPassword          : `input[name='ConfirmNewPassword']`
     },
     buttons: {
-        sendLink: '#forgotPasswordForm > div.button-container > button.log-in-button.send-button',
-        cancel: 'forgotPasswordCancelButton'
+        sendLink                    : '#forgotPasswordForm > div.button-container > button.log-in-button.send-button',
+        cancel                      : 'forgotPasswordCancelButton',
+        save                        : 'id=submitPasswordChange'
     },
 
 
@@ -27,7 +31,22 @@ module.exports = {
         const element = this.fields.email;
         I.fillField(element, value);
     },
-
+    setCurrentPassword(value) {
+        const element = this.fields.currentPassword;
+        I.fillField(element, value);
+    },
+    setNewPassword(value) {
+        const element = this.fields.newPassword;
+        I.fillField(element, value);
+    },
+    setConfirmPassword(value) {
+        const element = this.fields.confirmNewPassword;
+        I.fillField(element, value);
+    },
+    clickSave() {
+        const element = this.buttons.save;
+        I.click(element);
+    },
    async getGrecaptcharesponse() {
         const element = this.fields.recaptchaResponse;
         return await I.grabAttributeFrom(element, jsonValue());
