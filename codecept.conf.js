@@ -38,6 +38,7 @@ exports.config = {
     allowedDomainsPage: './src/pages/allowed-domains.page.js',
     systemSettingsPage: './src/pages/system-settings.page.js',
     fileReleaseRPage: './src/pages/file-release-request.page.js'
+    receiverGroupsPage:'./src/pages/receiver-groups.page.js'
   },
   mocha: {
     reporterOptions: {

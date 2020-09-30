@@ -16,6 +16,7 @@ module.exports = {
         saveSenderPolicy: `button[id='saveSPButton']`,
         deleteSenderGroupConfirmCancel: `button[id='deleteSenderGroupConfirmCancel']`,
         deleteSenderGroupConfirmSave: `button[id='deleteSenderGroupConfirmSave']`,
+        publishPolicy: `button[id='publishDraftPolicy']
     },
 
 
@@ -25,6 +26,7 @@ module.exports = {
      * AddNewSenderGroup & Domain
      * ***************************************************************
      */
+
     clickAddNewSenderGroupButton() {
         const element = this.buttons.addNewSenderGroup;
         I.click(element);
@@ -40,26 +42,41 @@ module.exports = {
         I.click(element);
     },
 
+    clickPublishPolicy(){
+        const element = this.buttons.publishPolicy;
+        I.click(element);
+    }
+
+
     clickSaveSpButton() {
         const element = this.buttons.saveSenderPolicy;
         I.click(element);
     },
 
-    setSendergroupName() {
+    setSendergroupName(value) {
         const element = this.fields.policyOptionNameInput;
-        I.fillField(element);
+        I.fillField(element,value);
     },
-
-    setDomainName() {
+    getSendergroupName() {
+        const element = this.fields.policyOptionNameInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    }
+    setDomainName(value) {
         const element = this.fields.domainNameInput;
-        I.fillField(element);
+        I.fillField(element, value);
     },
-
-    setMailBox() {
+    getDomainName(){
+        const element = this.fields.domainNameInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    }
+    setMailBox(value) {
         const element = this.fields.mailBoxInput;
-        I.fillField(element);
+        I.fillField(element,value);
     },
-
+    getMailBox() {
+        const element = this.fields.mailBoxInput;
+        return await I.grabAttributeFrom(element, jsonValue());
+    }
 
     /*
      * DeleteCancelSpButton
