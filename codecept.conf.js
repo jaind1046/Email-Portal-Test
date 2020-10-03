@@ -1,4 +1,4 @@
-exports.config = {
+exports.config = {  
   output: './output',
   helpers: {
     Puppeteer: {
@@ -20,7 +20,7 @@ exports.config = {
   },
   include: {
     I: './specs/step_definitions/steps_file.js',
-    env: './credentials.js',
+    env: './credentials.js',    
     homePage: './src/pages/home.page.js',
     loginPage: './src/pages/login.page.js',
     userActivationPage: './src/pages/account-activation.page.js',
@@ -89,6 +89,6 @@ exports.config = {
     //   projectName: 'nadhodegw_personal'
     // }
   },
-  tests: './*.steps.js',
+  tests: './specs/tests/*_test.js',
   name: 'email-portal-test'
 }
