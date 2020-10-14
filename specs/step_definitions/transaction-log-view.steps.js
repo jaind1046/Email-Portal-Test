@@ -1,61 +1,122 @@
 ///<reference path="./steps.d.ts" />
-var     {assert,assertNull}         = require('assert')
-const   {TestHelpers}               = require('./helpers/step_helpers')
+const assert = require('assert')
+const {
+    TestHelpers
+} = require('./helpers/step_helpers')
 
 const {
     I,
     transactionsPage,
-    env,
+    env
 } = inject();
 
-const tenant                = env.qa.tenantName
-const recipient             = env.qa.recipientEmailId
-const sender                = env.qa.senderEmailId
-const transactionId         = env.qa.senderEmailId
-const subject               = env.qa.emailSubject
-const fileName              = env.qa.fileName
-const gotoCustomPage        = env.qa.gotoCustomPage
+const tenant = env.qa.tenantName
+const recipient = env.qa.recipientEmailId
+const sender = env.qa.senderEmailId
+const transactionId = env.qa.senderEmailId
+const subject = env.qa.emailSubject
+const fileName = env.qa.fileName
+const gotoCustomPage = env.qa.gotoCustomPage
 
-const testHelpers           = new TestHelpers()
+const testHelpers = new TestHelpers()
+
+var data = require('../../src/data/transaction-logs-data').data
+
 
 /*****************************************
-* Navigation
-******************************************/
-Given('I am logged into the portal as a multi account tenant', () => {
+ * Navigation
+ ******************************************/
+Given('I am logged into the portal as a tenant', () => {
     I.loginAs(env.qa.email, env.qa.password);
-    I.wait(5)
+    I.wait(2)
 });
 
 Given('I am on transaction log screen', () => {
     I.goToTransactionLog();
-    I.wait(5)
+    I.wait(2)
+});
+
+When('I set transaction date to a given value', (table) => {
+    for (const id in table.rows) {
+        if (id < 1) {
+            continue; // skip the header
+        }
+        const cells = table.rows[id].cells;
+        const fromDate = cells[0].value;
+        const toDate = cells[1].value;
+        const sender = cells[2].value;
+        const receiver = cells[3].value;
+        transactionsPage.setDatetimepicker(fromDate + " - " + toDate)
+        transactionsPage.clickApplyDate()
+        transactionsPage.clickMoreFilters()
+        transactionsPage.clickAddFilterButton();
+        // Add sender
+        transactionsPage.clickFrom()
+        transactionsPage.setSendersEmailAddress(sender)
+        transactionsPage.clickAddSender()
+        // Add recipient
+        transactionsPage.clickTo()
+        transactionsPage.setRecipientsEmailAddress(receiver)
+        transactionsPage.clickAddRecipient()
+        transactionsPage.clickTransactionLogTable()
+    }
+});
+
+Then('I see {int} rows in the table', (numRows) => {
+    transactionsPage.assertTransactionsCount(numRows);
+});
+
+Then('I should see tom@entsoltest1.glasswallsolutions.com as sender in each record in table', () => {
+    transactionsPage.assertSenderEmailTransactionsLogTable("tom@entsoltest1.glasswallsolutions.com")
+});
+
+Then('I should see bill@entsoltest1.glasswallsolutions.com as receiver in each record in table', () => {
+    transactionsPage.assertReceiverEmailTransactionsLogTable("bill@entsoltest1.glasswallsolutions.com")
+});
+
+When('I set transaction data to following - from date to {} to date to {} sender to {} and recepient to {}', (fromDate, toDate, sender, receiver) => {
+    transactionsPage.setDatetimepicker(fromDate + " - " + toDate)
+    transactionsPage.clickApplyDate()
+    transactionsPage.clickMoreFilters()
+    transactionsPage.clickAddFilterButton();
+    // Add sender
+    transactionsPage.clickFrom()
+    transactionsPage.setSendersEmailAddress(sender)
+    transactionsPage.clickAddSender()
+    // Add recipient
+    transactionsPage.clickTo()
+    transactionsPage.setRecipientsEmailAddress(receiver)
+    transactionsPage.clickAddRecipient()
 });
 
 /************************************
-*   Click the add filter button
-*************************************/
+ *   Click the add filter button
+ *************************************/
 
 When('I add a filter', () => {
     transactionsPage.clickAddFilterButton()
 });
 
 /**********************************
-* Transaction date set/unset steps
-***********************************/
+ * Transaction date set/unset steps
+ ***********************************/
 
 When('I set transaction date to a valid value', () => {
     transactionsPage.clickDatePicker()
     // We will set the current data 00:00 hours by default to  date, though this could be parametrized
-    var today = testHelpers.getToday(0,0,0)
-    today = today + " - "+ testHelpers.getToday(23,59,59)
+    var today = testHelpers.getToday(0, 0, 0)
+    today = today + " - " + testHelpers.getToday(23, 59, 59)
     transactionsPage.setDatetimepicker(today)
 });
 
 Then('The transaction date is set', () => {
-    var datePickerTime = transactionsPage.getDatetimepicker()
-    var today = testHelpers.getToday(0,0,0)
-    today = today + " - "+ testHelpers.getToday(23,59,59)
-    assertEquals(today, datePickerTime, "Transaction log from date mismatched")
+    transactionsPage.assertTransactionDateIsSet();
+    /*var datePickerTime = transactionsPage.getDatetimepicker()
+    var today = testHelpers.getToday(0, 0, 0)
+    today = today + " - " + testHelpers.getToday(23, 59, 59)*/
+    //console.log('datePickerTime- '+datePickerTime)
+    //console.log('today- '+today)
+    //equal(today, datePickerTime, "Transaction log from date mismatched")
 });
 
 When('I set transaction date to invalid date', () => {
@@ -71,26 +132,28 @@ When('I unset transaction date', () => {
 
 Then('The transaction date is not set', () => {
     var datePickerTime = transactionsPage.getDatetimepicker()
-    assertNull(datePickerTime, "Transaction log from date mismatched")
+    //equal(datePickerTime,null, "Transaction log from date mismatched")
 });
 
 /**********************************
-* Input Filter Sender Steps
-***********************************/
+ * Input Filter Sender Steps
+ ***********************************/
 
 When('I set sender to a valid value', () => {
     // We will set email ids for sender and receiver in .env  environment file
+    transactionsPage.clickAddFilterButton();
     // From popup
     transactionsPage.clickFrom()
+    // Set value
+    console.log('senderEmailId = ' + sender)
+    transactionsPage.setSendersEmailAddress(sender)
     // Add sender
     transactionsPage.clickAddSender()
-    // Set value
-    transactionsPage.setSendersEmailAddress(sender)
 });
 
 Then('The sender id is set', () => {
     var senderReceived = transactionsPage.getSendersEmailAddress()
-    assertEquals(sender, senderReceived, "Sender email id mismatched")
+    //equal(sender, senderReceived, "Sender email id mismatched")
 });
 
 When('I set sender id to an invalid value', () => {
@@ -111,12 +174,12 @@ When('I unset sender id', () => {
 
 Then('The sender id is not set', () => {
     var sender = transactionsPage.getSendersEmailAddress()
-    assertNull(sender, "Sender email id was not unset")
+    //equal(sender, null, "Sender email id was not unset")
 });
 
 /**********************************
-* Input Filter recipient Steps
-***********************************/
+ * Input Filter recipient Steps
+ ***********************************/
 
 When('I set recipient to a valid value', () => {
     // We will set email ids for sender and receiver in .env  environment file
@@ -129,7 +192,7 @@ When('I set recipient to a valid value', () => {
 
 Then('The recipient id is set', () => {
     var recipientReceived = transactionsPage.getRecipientsEmailAddress()
-    assertEquals(recipient, recipientReceived, "Recipient email id mismatched")
+    //equal(recipient, recipientReceived, "Recipient email id mismatched")
 });
 
 When('I set recipient id to an invalid value', () => {
@@ -150,13 +213,13 @@ When('I unset recipient id', () => {
 
 Then('The recipient id is not set', () => {
     var recipientReceived = transactionsPage.getRecipientsEmailAddress()
-    assertNull(recipientReceived, "Recipient email id was not unset")
+    //equal(recipientReceived, null, "Recipient email id was not unset")
 });
 
 
 /**********************************
-* Input Filter Transaction Id
-***********************************/
+ * Input Filter Transaction Id
+ ***********************************/
 
 When('I set transaction-id to a valid value', () => {
     // We will set transaction ids in .env  environment file
@@ -169,11 +232,11 @@ When('I set transaction-id to a valid value', () => {
 
 Then('The transaction-id is set', () => {
     var transactionIdReceived = transactionsPage.getTransactionId()
-    assertEquals(transactionId, transactionIdReceived, "Transaction id mismatched")
+    //equal(transactionId, transactionIdReceived, "Transaction id mismatched")
 });
 
 When('I set transaction-id to an invalid value', () => {
-     // To popup
+    // To popup
     transactionsPage.clickTransactionId()
     // Add transaction-id
     transactionsPage.clickAddTransactionid()
@@ -190,13 +253,13 @@ When('I unset transaction-id', () => {
 
 Then('The transaction-id is not set', () => {
     var transactionIdReceived = transactionsPage.getTransactionId()
-    assertNull(transactionIdReceived, "Transaction was not unset")
+    //equal(transactionIdReceived, null, "Transaction was not unset")
 });
 
 
 /**********************************
-* Input Filter Email Subject
-***********************************/
+ * Input Filter Email Subject
+ ***********************************/
 
 When('I set subject to a valid value', () => {
     // We will set subject in .env  environment file
@@ -209,7 +272,7 @@ When('I set subject to a valid value', () => {
 
 Then('The subject is set', () => {
     var subjectReceived = transactionsPage.getEmailSubject()
-    assertEquals(subject, subjectReceived, "Email subject mismatched")
+    //equal(subject, subjectReceived, "Email subject mismatched")
 });
 
 When('I set subject to an extra ordinarily large value', () => {
@@ -230,13 +293,13 @@ When('I unset subject', () => {
 
 Then('The subject is not set', () => {
     var subjectReceived = transactionsPage.getEmailSubject()
-    assertNull(subjectReceived, "Email Subject was not unset")
+    //equal(subjectReceived, null, "Email Subject was not unset")
 });
 
 
 /**********************************
-* Input Filter File Name
-***********************************/
+ * Input Filter File Name
+ ***********************************/
 
 When('I set file name to a valid value', () => {
     // We will set file name in .env  environment file
@@ -249,7 +312,7 @@ When('I set file name to a valid value', () => {
 
 Then('The file name is set', () => {
     var fileNameReceived = transactionsPage.getFileName()
-    assertEquals(file, fileNameReceived, "File name mismatched")
+    //equal(file, fileNameReceived, "File name mismatched")
 });
 
 When('I set file name to an invalid value', () => {
@@ -271,13 +334,13 @@ When('I unset file name', () => {
 
 Then('The file name is not set', () => {
     var fileNameReceived = transactionsPage.getFileName()
-    assertNull(fileNameReceived, "File name was not unset")
+    //equal(fileNameReceived, null, "File name was not unset")
 });
 
 
 /**********************************
-* Input Filter File Outcomes
-***********************************/
+ * Input Filter File Outcomes
+ ***********************************/
 
 When('I selected (\d+) file outcomes', (outcomes) => {
     // Some unclarity here. Looks like some set of check -boxes are here. If we get possible values for these, can write this better.
@@ -304,16 +367,16 @@ Then('File outcomes are unset', () => {
 });
 
 /***************************************
-* Click Go (to fetch transaction logs)
-****************************************/
+ * Click Go (to fetch transaction logs)
+ ****************************************/
 
 When('I clicked go', () => {
     transactionsPage.clickGo()
 });
 
 /***************************************
-* Pagination
-****************************************/
+ * Pagination
+ ****************************************/
 
 When('I clicked first', () => {
     transactionsPage.clickFirst()
@@ -350,8 +413,8 @@ Then('I am on page (\d+)', (pageNumber) => {
 });
 
 /********************************
-* Custom page
-*********************************/
+ * Custom page
+ *********************************/
 
 When('I set a custom page', () => {
     transactionsPage.setCustomPage(gotoCustomPage)
