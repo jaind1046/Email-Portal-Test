@@ -26,7 +26,7 @@ module.exports = function () {
 
     enterInvalidPassword: function()
     {
-      loginPage.loginWith(env.qa.email, env.qa.inValidPassword)
+      loginPage.loginWith(env.qa.email, data.qa.inValidPassword)
       this.wait(5)
     },
 

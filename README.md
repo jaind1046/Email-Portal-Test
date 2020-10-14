@@ -5,10 +5,22 @@ UI Browser tests using CodeceptJS and Puppeteer helper
 Setup
 
     Install node.js 
+
     Clone this repository
+
     Install the dependencies: 
         npm install (This will install CodeceptJS with Puppeteer and & all the dependent packages)
-        
+    
+    Add a credentials.js file and update it with the required credentials with the content:
+        module.exports = {
+            qa: {
+                email: '<email>',
+                password: '<password>',
+                tenantName: '<tenantName>',
+                tenantId: '<tenantId>',
+            }
+        }
+
 
 Running Tests
 
